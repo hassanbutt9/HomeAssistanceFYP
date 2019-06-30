@@ -13,4 +13,7 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this,LoginInterface.class);
         startActivity(i);
     }
+    public void TalhaTest(){
+
+    }
 }
