@@ -20,6 +20,6 @@
     <string name="job" translatable="false">Jobs</string>
     <string name="review" translatable="false">Reviews</string>
     <string name="transaction" translatable="false">Transacntions</string>
-    <string name="stats"  translatable="false">Statistics</string>
+    <string name="stats" translatable="false">Statistics</string>
     <string name="earning" translatable="false">Earnings</string>
 </resources>
