@@ -4,11 +4,16 @@
     <string name="app_name">HomeAssistanceFYP</string>
     <string name="login">لاگ ان کریں</string>
     <string name ="email"> اپنا ای میل درج کریں</string>
-    <string name="forget">پاسورڈ بھول گے؟</string>
+    <string name="forget"><b><u>پاسورڈ بھول گے؟</u></b></string>
     <string name="signin">داخلہ</string>
-    <string name="changeLanguage">زبان تبدیل کریں</string>
+    <string name="changeLanguage"><b><u>زبان تبدیل کریں</u></b></string>
     <string name="password">اپنا پاس ورڈ درج کریں</string>
     <string name="rememberme">یاد رکھیں</string>
     <string name="loginwith">یا لاگ ان کریں</string>
-    <string name="noAccount">کیا اکاؤنٹ نہیں ہے؟ سائن اپ</string>
+    <string name="noAccount"><b><u>کیا اکاؤنٹ نہیں ہے؟ سائن اپ</u></b></string>
+    <string name="signup">سائن اپ</string>
+    <string name="username">صارف کا نام</string>
+    <string name="confirmPassword">پاس ورڈ کی توثیق کریں</string>
+    <string name="phoneNo">03xx------</string>
+    <string name="signUpwithSocialPlatform">سماجی پلیٹ فارم کے ساتھ سائن اپ</string>
 </resources>

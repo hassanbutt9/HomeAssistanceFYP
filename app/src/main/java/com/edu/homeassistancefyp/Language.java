@@ -47,7 +47,7 @@ public class Language {
     }
     public void setLocate(String language){
 
-        Toast.makeText(context, language, Toast.LENGTH_SHORT).show();
+        
         Locale locale = new Locale(language.toLowerCase());
         Locale.setDefault(locale);
         Resources resources = context.getResources();
