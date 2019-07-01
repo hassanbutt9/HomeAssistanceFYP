@@ -14,5 +14,12 @@
     <string name="confirmPassword">Confirm Password</string>
     <string name="phoneNo">03xx------</string>
     <string name="signUpwithSocialPlatform">Signup with social platform</string>
-
+    <string name="admin" translatable="false">Admin</string>
+    <string name="customer" translatable="false">Customers</string>
+    <string name="worker" translatable="false">Workers</string>
+    <string name="job" translatable="false">Jobs</string>
+    <string name="review" translatable="false">Reviews</string>
+    <string name="transaction" translatable="false">Transacntions</string>
+    <string name="stats"  translatable="false">Statistics</string>
+    <string name="earning" translatable="false">Earnings</string>
 </resources>
