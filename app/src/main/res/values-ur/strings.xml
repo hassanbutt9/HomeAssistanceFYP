@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">HomeAssistanceFYP</string>
+    <string name="login">لاگ ان کریں</string>
+    <string name ="email"> اپنا ای میل درج کریں</string>
+    <string name="forget">پاسورڈ بھول گے؟</string>
+    <string name="signin">داخلہ</string>
+    <string name="changeLanguage">زبان تبدیل کریں</string>
+    <string name="password">اپنا پاس ورڈ درج کریں</string>
+    <string name="rememberme">یاد رکھیں</string>
+    <string name="loginwith">یا لاگ ان کریں</string>
+    <string name="noAccount">کیا اکاؤنٹ نہیں ہے؟ سائن اپ</string>
+</resources>
