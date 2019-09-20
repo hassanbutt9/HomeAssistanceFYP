@@ -14,23 +14,23 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class CustomerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,ProfileFragment.OnFragmentInteractionListener,IndexFragment.OnFragmentInteractionListener{
+public class WorkerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,ProfileFragment.OnFragmentInteractionListener,IndexFragmentWrokers.OnFragmentInteractionListener{
     private DrawerLayout drawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer);
+        setContentView(R.layout.activity_worker);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-       this.setSupportActionBar(myToolbar);
-       drawerLayout = findViewById(R.id.drawer_Layout);
+        this.setSupportActionBar(myToolbar);
+        drawerLayout = findViewById(R.id.drawer_Layout);
         NavigationView navigationView=findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,myToolbar,R.string.nav_drawer_open,R.string.nav_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         if(savedInstanceState==null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new IndexFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new IndexFragmentWrokers()).commit();
             navigationView.setCheckedItem(R.id.nav_Home);
         }
     }
@@ -40,7 +40,7 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
         if(drawerLayout.isDrawerOpen(GravityCompat.START))
             drawerLayout.closeDrawer(GravityCompat.START);
         else
-        super.onBackPressed();
+            super.onBackPressed();
     }
 
     @Override
@@ -64,6 +64,6 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
 
     @Override
     public void onFragmentInteraction(Uri uri) {
-        
+
     }
 }

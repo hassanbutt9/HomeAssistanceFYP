@@ -17,7 +17,7 @@
         <item
             android:id="@+id/nav_myJobs"
             android:icon="@drawable/ic_location"
-            android:title="My Jobs" />
+            android:title="Manage Services" />
         <item
             android:id="@+id/nav_Logout"
             android:icon="@drawable/ic_wallet"
