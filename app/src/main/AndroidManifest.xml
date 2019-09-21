@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ManageServices"></activity>
+        <activity android:name=".WorkerIndex"></activity>
+        <activity android:name=".ManageServices" />
         <activity
             android:name=".WorkerActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
