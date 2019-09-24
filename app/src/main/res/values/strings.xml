@@ -10,7 +10,7 @@
     <string name="loginwith">Or Login with</string>
     <string name="noAccount"><u><b>Dont have an account? Sign Up</b></u></string>
     <string name="signup">Sign Up</string>
-    <string name="username">User name</string>
+    <string name="username">Name</string>
     <string name="confirmPassword">Confirm Password</string>
     <string name="phoneNo">03xx------</string>
     <string name="signUpwithSocialPlatform">Signup with social platform</string>

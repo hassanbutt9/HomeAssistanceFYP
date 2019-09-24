@@ -14,7 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class WorkerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,ProfileFragment.OnFragmentInteractionListener,IndexFragmentWrokers.OnFragmentInteractionListener{
+public class WorkerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,ProfileFragment.OnFragmentInteractionListener,WorkerFragmentIndex.OnFragmentInteractionListener{
     private DrawerLayout drawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class WorkerActivity extends AppCompatActivity implements NavigationView.
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         if(savedInstanceState==null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new IndexFragmentWrokers()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new WorkerFragmentIndex()).commit();
             navigationView.setCheckedItem(R.id.nav_Home);
         }
     }
@@ -50,20 +50,23 @@ public class WorkerActivity extends AppCompatActivity implements NavigationView.
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ProfileFragment()).commit();
                 break;
             case R.id.nav_Home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new IndexFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new WorkerFragmentIndex()).commit();
+
                 break;
             case R.id.nav_Logout:
-                Intent login  = new Intent(this,new LoginInterface().getClass());
-                startActivity(login);
+                Intent login2  = new Intent(this,new LoginInterface().getClass());
+                startActivity(login2);
                 break;
+            case R.id.nav_myJobs:
+                startActivity(new Intent(this,new ManageServices().getClass()));
 
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onFragmentInteraction(Uri uri){
 
     }
+
+
 }

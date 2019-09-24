@@ -3,6 +3,7 @@ package com.edu.homeassistancefyp;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 public class AdminIndex extends AppCompatActivity {
 
@@ -14,4 +15,5 @@ public class AdminIndex extends AppCompatActivity {
     public  void languageChangeButton(View v){
         new Language(this).ShowChangeLanguage();
     }
+
 }

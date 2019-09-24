@@ -12,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class CustomerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,ProfileFragment.OnFragmentInteractionListener,IndexFragment.OnFragmentInteractionListener{
@@ -20,6 +22,30 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer);
+        String newString;
+        String CustomerName;
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                newString=null;
+                CustomerName=null;
+            } else {
+                newString =extras.getString("email");
+                CustomerName = extras.getString("name");
+            }
+        } else {
+            newString= (String) savedInstanceState.getSerializable("email");
+            CustomerName= (String) savedInstanceState.getSerializable("name");
+        }
+        NavigationView navigationView2 = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView2.getHeaderView(0);
+        TextView navName = (TextView) headerView.findViewById(R.id.customerName);
+        navName.setText(CustomerName);
+        TextView cusEmail = (TextView) headerView.findViewById(R.id.customerEmail);
+        cusEmail.setText(newString);
+
+
+
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
        this.setSupportActionBar(myToolbar);
