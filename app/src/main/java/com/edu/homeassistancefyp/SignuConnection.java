@@ -53,7 +53,7 @@ public class SignuConnection extends AsyncTask<String, Void, String> {
 
 
 
-        String connectionString = "http://192.168.174.2/FYPHomeASsitant/signup.php";
+        String connectionString = "http://192.168.10.3/FYPHomeASsitant/signup.php";
 
         try {
             URL url = new URL(connectionString);

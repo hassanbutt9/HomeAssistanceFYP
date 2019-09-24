@@ -3,16 +3,16 @@ package com.edu.homeassistancefyp;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import com.google.android.material.navigation.NavigationView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.widget.TextView;
 
 public class WorkerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,ProfileFragment.OnFragmentInteractionListener,WorkerFragmentIndex.OnFragmentInteractionListener{
     private DrawerLayout drawerLayout;
@@ -33,6 +33,14 @@ public class WorkerActivity extends AppCompatActivity implements NavigationView.
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new WorkerFragmentIndex()).commit();
             navigationView.setCheckedItem(R.id.nav_Home);
         }
+        /*Intent i=new Intent(this,MapsActivity.class);
+        i.putExtra("msg", "worker");
+        startActivity(i);
+        TextView mTextView = (TextView) findViewById(R.id.location);
+        Intent intent = getIntent();
+        String message = intent.getStringExtra("message");
+        mTextView.setText("");
+        mTextView.setText(message);*/
     }
 
     @Override
@@ -59,6 +67,9 @@ public class WorkerActivity extends AppCompatActivity implements NavigationView.
                 break;
             case R.id.nav_myJobs:
                 startActivity(new Intent(this,new ManageServices().getClass()));
+            case R.id.nav_Location:
+                startActivity(new Intent(this,new MapsActivity().getClass()));
+
 
         }
         drawerLayout.closeDrawer(GravityCompat.START);

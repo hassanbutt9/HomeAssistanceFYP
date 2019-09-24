@@ -11,6 +11,10 @@
             android:icon="@drawable/smartphone"
             android:title="Home" />
         <item
+            android:id="@+id/nav_Location"
+            android:icon="@drawable/ic_wallet"
+            android:title="View Location" />
+        <item
             android:id="@+id/nav_myProfile"
             android:icon="@drawable/img_user"
             android:title="My Profile" />
@@ -22,6 +26,7 @@
             android:id="@+id/nav_Logout"
             android:icon="@drawable/ic_wallet"
             android:title="Logout" />
+
     </group>
 
 
