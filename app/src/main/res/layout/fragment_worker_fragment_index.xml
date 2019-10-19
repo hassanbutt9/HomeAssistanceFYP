@@ -42,7 +42,7 @@
 
         <LinearLayout
             android:id="@+id/linearLayout3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
@@ -54,9 +54,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:paddingLeft="20dp"
                 android:text="Talha Nobeen"
                 android:textColor="@color/white"
                 android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:layout_weight="1"
+                android:background="@color/googleRed"
+                android:drawableTop="@drawable/refresh" />
         </LinearLayout>
 
 
@@ -128,10 +138,12 @@
                 android:textSize="22sp" />
 
             <TextView
-                android:id="@+id/location"
+                android:id="@+id/loc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
                 android:text="Loading..."
                 android:textColor="@android:color/background_dark"
                 android:textSize="18sp" />
