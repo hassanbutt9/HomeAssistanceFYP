@@ -23,8 +23,12 @@
             android:icon="@drawable/ic_location"
             android:title="Manage Services" />
         <item
+            android:id="@+id/nav_ViewProfile"
+            android:icon="@drawable/lock"
+            android:title="View Profile" />
+        <item
             android:id="@+id/nav_Logout"
-            android:icon="@drawable/ic_wallet"
+            android:icon="@drawable/lock"
             android:title="Logout" />
 
     </group>

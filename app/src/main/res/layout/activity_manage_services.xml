@@ -55,7 +55,8 @@
             android:layout_below="@+id/textView1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:paddingLeft="10dp">
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp">
 
             <CheckBox
                 android:id="@+id/checkBox"
@@ -66,9 +67,9 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_width="20dp"
+                android:layout_height="50dp"
+                android:layout_weight="0.5"
                 app:srcCompat="@drawable/carwash" />
 
             <CheckBox
@@ -80,8 +81,8 @@
 
             <ImageButton
                 android:id="@+id/imageButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/white"
                 app:srcCompat="@drawable/makeup" />
@@ -95,7 +96,8 @@
             android:layout_below="@+id/textView1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
-            android:paddingLeft="10dp">
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp">
 
             <CheckBox
                 android:id="@+id/checkBox3"
@@ -106,8 +108,8 @@
 
             <ImageButton
                 android:id="@+id/imageButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/white"
                 android:scrollbarThumbHorizontal="@color/white"
@@ -123,8 +125,8 @@
 
             <ImageButton
                 android:id="@+id/imageButton3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/white"
                 app:srcCompat="@drawable/doctor" />
@@ -137,7 +139,8 @@
             android:layout_below="@+id/textView1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
-            android:paddingLeft="10dp">
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp">
 
             <CheckBox
                 android:id="@+id/checkBox5"
@@ -148,8 +151,8 @@
 
             <ImageButton
                 android:id="@+id/imageButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/white"
                 app:srcCompat="@drawable/teacher" />
@@ -163,8 +166,8 @@
 
             <ImageButton
                 android:id="@+id/imageButton5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/white"
                 app:srcCompat="@drawable/leak" />
@@ -177,7 +180,8 @@
             android:layout_below="@+id/textView1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
-            android:paddingLeft="10dp">
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp">
 
             <CheckBox
                 android:id="@+id/checkBox7"
@@ -188,8 +192,8 @@
 
             <ImageButton
                 android:id="@+id/imageButton6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/white"
                 app:srcCompat="@drawable/electrician" />
@@ -203,8 +207,8 @@
 
             <ImageButton
                 android:id="@+id/imageButton7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/white"
                 app:srcCompat="@drawable/massage" />
@@ -217,7 +221,8 @@
             android:layout_below="@+id/textView1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
-            android:paddingLeft="10dp">
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp">
 
             <CheckBox
                 android:id="@+id/checkBox9"
@@ -228,8 +233,8 @@
 
             <ImageButton
                 android:id="@+id/imageButton8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/white"
                 app:srcCompat="@drawable/fitnesstrainer" />
@@ -243,8 +248,8 @@
 
             <ImageButton
                 android:id="@+id/imageButton9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/white"
                 app:srcCompat="@drawable/maid" />
@@ -257,7 +262,8 @@
             android:layout_below="@+id/textView1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
-            android:paddingLeft="10dp">
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp">
 
             <CheckBox
                 android:id="@+id/checkBox11"
@@ -268,8 +274,8 @@
 
             <ImageButton
                 android:id="@+id/imageButton10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/white"
                 app:srcCompat="@drawable/carpenter" />
@@ -283,8 +289,8 @@
 
             <ImageButton
                 android:id="@+id/imageButton11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/white"
                 app:srcCompat="@drawable/teacher" />

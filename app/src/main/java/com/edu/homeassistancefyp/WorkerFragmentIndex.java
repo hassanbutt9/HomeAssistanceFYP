@@ -7,6 +7,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
@@ -15,11 +16,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Locale;
 
@@ -73,8 +85,8 @@ public class WorkerFragmentIndex extends Fragment implements LocationListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam1 = getArguments().getString("ARG_PARAM1");
+            mParam2 = getArguments().getString("ARG_PARAM2");
         }
 
     }
@@ -95,6 +107,9 @@ public class WorkerFragmentIndex extends Fragment implements LocationListener {
         try {
             String address=getAddress(latLng);
             loca.setText(address);
+            db d=new db();
+            d.execute(address);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -122,6 +137,8 @@ public class WorkerFragmentIndex extends Fragment implements LocationListener {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_worker_fragment_index,
                 container, false);
+        TextView name=(TextView) view.findViewById(R.id.textView8);
+        name.setText(mParam2);
         loca=(TextView) view.findViewById(R.id.loc);
         getLocationBtn = (Button) view.findViewById(R.id.btn);
         getLocationBtn.setOnClickListener(new View.OnClickListener() {
@@ -130,6 +147,27 @@ public class WorkerFragmentIndex extends Fragment implements LocationListener {
                 getLocation();
             }
         });
+
+        final TextView status=(TextView) view.findViewById(R.id.textView14);
+        Switch sw=(Switch) view.findViewById(R.id.switch1);
+        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                if(b) {
+                    status.setText("Go Offline");
+                    saveState ss=new saveState();
+                    ss.execute("Online");
+                }
+                else
+                { status.setText("Go Online");
+                saveState ss=new saveState();
+                ss.execute("Offline");}
+            }
+        });
+
+
+
         return view;
     }
     private String getAddress(LatLng latLng) throws IOException {
@@ -180,5 +218,91 @@ public class WorkerFragmentIndex extends Fragment implements LocationListener {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+    class db extends AsyncTask<String,Void,Void>
+    {
+        String loc;
+        String result;
+        @Override
+        protected Void doInBackground(String... strings) {
+            loc=strings[0];
+
+            String connectionString = "http://192.168.10.5/FYPHomeASsitant/addLoc.php";
+
+            try {
+                URL url = new URL(connectionString);
+                HttpURLConnection http = (HttpURLConnection) url.openConnection();
+                http.setRequestMethod("POST");
+                http.setDoInput(true);
+                http.setDoOutput(true);
+
+                OutputStream ops = http.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(ops, "UTF-8"));
+                String data = URLEncoder.encode("loc", "UTF-8")+"="+URLEncoder.encode(loc, "UTF-8")
+                        +"&&"+URLEncoder.encode("email", "UTF-8")+"="+URLEncoder.encode(mParam1, "UTF-8");
+                writer.write(data);
+                writer.flush();
+                writer.close();
+                ops.close();
+
+                InputStream ips = http.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(ips, "ISO-8859-1"));
+                String line = "";
+                while ((line = reader.readLine()) != null){
+                    result += line;
+                }
+                reader.close();
+                ips.close();
+                http.disconnect();
+
+
+            } catch (Exception e) {
+                result = e.getMessage();
+            }
+            return null;
+        }
+    }
+    class saveState extends AsyncTask<String,Void,Void>
+    {
+
+        String result;
+        @Override
+        protected Void doInBackground(String... strings) {
+            String status=strings[0];
+
+            String connectionString = "http://192.168.10.5/FYPHomeASsitant/Status.php";
+
+            try {
+                URL url = new URL(connectionString);
+                HttpURLConnection http = (HttpURLConnection) url.openConnection();
+                http.setRequestMethod("POST");
+                http.setDoInput(true);
+                http.setDoOutput(true);
+
+                OutputStream ops = http.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(ops, "UTF-8"));
+                String data = URLEncoder.encode("status", "UTF-8")+"="+URLEncoder.encode(status, "UTF-8")
+                        +"&&"+URLEncoder.encode("email", "UTF-8")+"="+URLEncoder.encode(mParam1, "UTF-8");
+                writer.write(data);
+                writer.flush();
+                writer.close();
+                ops.close();
+
+                InputStream ips = http.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(ips, "ISO-8859-1"));
+                String line = "";
+                while ((line = reader.readLine()) != null){
+                    result += line;
+                }
+                reader.close();
+                ips.close();
+                http.disconnect();
+
+
+            } catch (Exception e) {
+                result = e.getMessage();
+            }
+            return null;
+        }
     }
 }

@@ -126,6 +126,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="-2dp"
                     android:background="@color/editTextBG"
+                    android:inputType="textPassword"
                     android:hint="@string/password"
                     android:paddingLeft="5dp"
                     android:textSize="15sp" />
@@ -163,6 +164,8 @@
                     android:background="@color/editTextBG"
                     android:hint="@string/phoneNo"
                     android:paddingLeft="5dp"
+                    android:inputType="number"
+                    android:maxLength="11"
                     android:textSize="15sp" />
 
             </RelativeLayout>

@@ -6,9 +6,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 public class SignUpInterface extends AppCompatActivity {
-
+    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,26 +22,31 @@ public class SignUpInterface extends AppCompatActivity {
 
     public void signupClicked(View view){
         EditText emailEditText = (EditText)findViewById(R.id.email);
-        EditText passEditText =(EditText)findViewById(R.id.password);
-        EditText nameEdit = (EditText)findViewById(R.id.name);
-        EditText phoneNo = (EditText)findViewById(R.id.phoneno);
-        String id = emailEditText.getText().toString();
-        String pass = passEditText.getText().toString();
-        String name = nameEdit.getText().toString();
-        String phoneNoValue = phoneNo.getText().toString();
+        if(emailEditText.getText().toString().isEmpty()) {
+            Toast.makeText(getApplicationContext(),"enter email address",Toast.LENGTH_SHORT).show();
+        }else {
+            if (emailEditText.getText().toString().trim().matches(emailPattern)) {
+                EditText passEditText =(EditText)findViewById(R.id.password);
+                EditText nameEdit = (EditText)findViewById(R.id.name);
+                EditText phoneNo = (EditText)findViewById(R.id.phoneno);
+                String id = emailEditText.getText().toString();
+                String pass = passEditText.getText().toString();
+                String name = nameEdit.getText().toString();
+                String phoneNoValue = phoneNo.getText().toString();
 
-        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.RadioSignupCheck);
-        int Rid=radioGroup.getCheckedRadioButtonId();
-        RadioButton rb=(RadioButton) findViewById(Rid);
-        String cOrW = (String) rb.getText();
+                RadioGroup radioGroup = (RadioGroup) findViewById(R.id.RadioSignupCheck);
+                int Rid=radioGroup.getCheckedRadioButtonId();
+                RadioButton rb=(RadioButton) findViewById(Rid);
+                String cOrW = (String) rb.getText();
+
+                SignuConnection LC = new SignuConnection(this);
+                LC.execute(id, pass,name,phoneNoValue,cOrW);
+            } else {
+                Toast.makeText(getApplicationContext(),"Invalid email address", Toast.LENGTH_SHORT).show();
+            }
+        }
 
 
-
-
-
-
-        SignuConnection LC = new SignuConnection(this);
-        LC.execute(id, pass,name,phoneNoValue,cOrW);
 
     }
 }

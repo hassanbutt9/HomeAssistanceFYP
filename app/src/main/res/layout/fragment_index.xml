@@ -15,7 +15,7 @@
         <ImageView
             android:id="@+id/imageView5"
             android:layout_width="match_parent"
-            android:layout_height="310dp"
+            android:layout_height="230dp"
             android:background="@color/editTextBG"
             android:src="@drawable/twoworkers" />
 
@@ -62,7 +62,7 @@
                 <ImageView
                     android:id="@+id/imageView6"
                     android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/makeup" />
 
                 <TextView
@@ -85,7 +85,7 @@
                 <ImageView
                     android:id="@+id/imageView7"
                     android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/cleaning" />
 
                 <TextView
@@ -108,7 +108,7 @@
                 <ImageView
                     android:id="@+id/imageView8"
                     android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/doctor" />
 
                 <TextView
@@ -129,7 +129,7 @@
                 <ImageView
                     android:id="@+id/imageView9"
                     android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/carwash" />
 
                 <TextView
@@ -163,7 +163,7 @@
                 <ImageView
                     android:id="@+id/imageView10"
                     android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/teacher" />
 
                 <TextView
@@ -186,7 +186,7 @@
                 <ImageView
                     android:id="@+id/imageView11"
                     android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/leak" />
 
                 <TextView
@@ -209,7 +209,7 @@
                 <ImageView
                     android:id="@+id/imageView12"
                     android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/electrician" />
 
                 <TextView
@@ -230,7 +230,7 @@
                 <ImageView
                     android:id="@+id/imageView13"
                     android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/massage" />
 
                 <TextView
@@ -264,7 +264,7 @@
                 <ImageView
                     android:id="@+id/imageView14"
                     android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/fitnesstrainer" />
 
                 <TextView
@@ -287,7 +287,7 @@
                 <ImageView
                     android:id="@+id/imageView15"
                     android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/maid" />
 
                 <TextView
@@ -310,7 +310,7 @@
                 <ImageView
                     android:id="@+id/imageView16"
                     android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/carpenter" />
 
                 <TextView
@@ -331,7 +331,7 @@
                 <ImageView
                     android:id="@+id/imageView17"
                     android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/teacher" />
 
                 <TextView

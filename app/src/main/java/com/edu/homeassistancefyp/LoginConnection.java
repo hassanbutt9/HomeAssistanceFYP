@@ -40,24 +40,12 @@ public class LoginConnection extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String message) {
         Log.i("checking ",message);
         if (message.equals("login successfull")) {
-
-            if(checkcustomerOrWorker.equals("customers")){
                 SearchData s = new SearchData();
                 s.execute(user);
-
-
-
-            }
-            else if(checkcustomerOrWorker.equals("workers")){
-                Intent w = new Intent(context,WorkerActivity.class);
-                context.startActivity(w);
-            }
-            else{
-                Toast.makeText(context, "error", Toast.LENGTH_SHORT).show();
-            }
         }
         else{
             Log.i("check","fail");
+            Toast.makeText(context, "Login Failed..Wrong email or passwrord ", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -76,7 +64,7 @@ public class LoginConnection extends AsyncTask<String, Void, String> {
             checkcustomerOrWorker="workers";
         }
     Log.i("worker/customer",checkcustomerOrWorker);
-        String connectionString = "http://192.168.10.8/FYPHomeASsitant/login.php";
+        String connectionString = "http://192.168.10.15/FYPHomeASsitant/login.php";
 
         try {
             URL url = new URL(connectionString);
@@ -127,6 +115,19 @@ public class LoginConnection extends AsyncTask<String, Void, String> {
         @Override
         protected void onPostExecute(String message) {
             Log.i("checkT",message);
+            if(checkcustomerOrWorker.equals("workers")){
+                String[] separated = message.split(":");
+                Toast.makeText(context, separated[0], Toast.LENGTH_SHORT).show();
+                CusName= separated[0];
+                phoneNo=separated[1];
+                Intent i = new Intent(context,WorkerActivity.class);
+                i.putExtra("email",user);
+                i.putExtra("name",CusName);
+                i.putExtra("phoneNO",phoneNo);
+                context.startActivity(i);
+
+            }
+            else if(checkcustomerOrWorker.equals("customers")){
             String[] separated = message.split(":");
             Toast.makeText(context, separated[0], Toast.LENGTH_SHORT).show();
             CusName= separated[0];
@@ -135,7 +136,7 @@ public class LoginConnection extends AsyncTask<String, Void, String> {
             i.putExtra("email",user);
             i.putExtra("name",CusName);
             i.putExtra("phoneNO",phoneNo);
-            context.startActivity(i);
+            context.startActivity(i);}
 
         }
 
@@ -144,7 +145,7 @@ public class LoginConnection extends AsyncTask<String, Void, String> {
             String result = "";
             String user2 = voids[0];
 
-            String connectionString = "http://192.168.10.8/FYPHomeASsitant/search.php";
+            String connectionString = "http://192.168.10.15/FYPHomeASsitant/search.php";
 
             try {
                 URL url = new URL(connectionString);

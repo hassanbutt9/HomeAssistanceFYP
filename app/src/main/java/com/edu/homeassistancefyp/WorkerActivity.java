@@ -43,11 +43,41 @@ import java.util.Locale;
 
 public class WorkerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,ProfileFragment.OnFragmentInteractionListener,WorkerFragmentIndex.OnFragmentInteractionListener {
     private DrawerLayout drawerLayout;
-
+    String newString;
+    String WorkerName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_worker);
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                newString=null;
+                WorkerName=null;
+            } else {
+                newString =extras.getString("email");
+                WorkerName = extras.getString("name");
+
+            }
+        } else {
+            newString= (String) savedInstanceState.getSerializable("email");
+            WorkerName= (String) savedInstanceState.getSerializable("name");
+        }
+        NavigationView navigationView2 = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView2.getHeaderView(0);
+        TextView navName = (TextView) headerView.findViewById(R.id.customerName);
+        navName.setText(WorkerName);
+        TextView cusEmail = (TextView) headerView.findViewById(R.id.customerEmail);
+        cusEmail.setText(newString);
+
+        Bundle bundle = new Bundle();
+        bundle.putString("ARG_PARAM1", newString);
+        bundle.putString("ARG_PARAM2",WorkerName);
+// set MyFragment Arguments
+        WorkerFragmentIndex myObj = new WorkerFragmentIndex();
+        myObj.setArguments(bundle);
+
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         this.setSupportActionBar(myToolbar);
@@ -58,7 +88,7 @@ public class WorkerActivity extends AppCompatActivity implements NavigationView.
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         if(savedInstanceState==null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new WorkerFragmentIndex()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,myObj).commit();
             navigationView.setCheckedItem(R.id.nav_Home);
 
 
@@ -98,9 +128,17 @@ public class WorkerActivity extends AppCompatActivity implements NavigationView.
                 break;
             case R.id.nav_myJobs:
                 startActivity(new Intent(this,new ManageServices().getClass()));
+                break;
+            case R.id.nav_ViewProfile:
+                Intent i = new Intent(this,profileActivity.class);
+                i.putExtra("email",newString);
+                i.putExtra("name",WorkerName);
+                startActivity(i);
+                break;
+
             case R.id.nav_Location:
                 startActivity(new Intent(this,new MapsActivity().getClass()));
-
+                break;
 
         }
         drawerLayout.closeDrawer(GravityCompat.START);
