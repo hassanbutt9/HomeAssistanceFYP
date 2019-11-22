@@ -16,11 +16,6 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -36,12 +31,12 @@ import java.net.URLEncoder;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link workersServices.OnFragmentInteractionListener} interface
+ * {@link Reviews.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link workersServices#newInstance} factory method to
+ * Use the {@link Reviews#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class workersServices extends Fragment {
+public class Reviews extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -53,7 +48,7 @@ public class workersServices extends Fragment {
     View view;
     private OnFragmentInteractionListener mListener;
 
-    public workersServices() {
+    public Reviews() {
         // Required empty public constructor
     }
 
@@ -63,11 +58,11 @@ public class workersServices extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment workersServices.
+     * @return A new instance of fragment Reviews.
      */
     // TODO: Rename and change types and number of parameters
-    public static workersServices newInstance(String param1, String param2) {
-        workersServices fragment = new workersServices();
+    public static Reviews newInstance(String param1, String param2) {
+        Reviews fragment = new Reviews();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -87,8 +82,8 @@ public class workersServices extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view =  inflater.inflate(R.layout.fragment_workers_services,
-             container, false);
+        view =  inflater.inflate(R.layout.fragment_reviews,
+                container, false);
         db d=new db();
         d.execute(mParam1);
 
@@ -152,7 +147,7 @@ public class workersServices extends Fragment {
                         TableLayout.LayoutParams.WRAP_CONTENT));
                 if (flag == 1) {
                     TextView b6 = new TextView(getActivity());
-                    b6.setText("Categorie");
+                    b6.setText("Customer");
                     b6.setPadding(20, 40, 0, 0);
                     b6.setTextColor(Color.BLUE);
                     b6.setTextSize(22);
@@ -160,14 +155,14 @@ public class workersServices extends Fragment {
                     TextView b19 = new TextView(getActivity());
                     b19.setPadding(20, 40, 0, 0);
                     b19.setTextSize(22);
-                    b19.setText("Description");
+                    b19.setText("Rating");
                     b19.setTextColor(Color.BLUE);
                     tr.addView(b19);
 
                     TextView b22 = new TextView(getActivity());
                     b22.setPadding(20, 40, 0, 0);
                     b22.setTextSize(22);
-                    b22.setText("Rate(HR)");
+                    b22.setText("Comments");
                     b22.setTextColor(Color.BLUE);
                     tr.addView(b22);
 
@@ -188,7 +183,7 @@ public class workersServices extends Fragment {
                     tr.addView(b);
                     i++;
                     TextView b1 = new TextView(getActivity());
-                    b1.setPadding(20, 20, 0, 0);
+                    b1.setPadding(50, 20, 0, 0);
                     b1.setTextSize(20);
                     String stime1 = separated[i];
                     b1.setText(stime1);
@@ -196,17 +191,12 @@ public class workersServices extends Fragment {
                     tr.addView(b1);
                     i++;
                     TextView b2 = new TextView(getActivity());
-                    b2.setPadding(80, 20, 0, 0);
+                    b2.setPadding(40, 20, 0, 0);
                     b2.setTextSize(20);
                     String stime2 = separated[i];
                     b2.setText(stime2);
                     b2.setTextColor(Color.BLACK);
                     tr.addView(b2);
-                    Button b8=new Button(getActivity());
-                    b8.setPadding(20, 20, 0, 0);
-                    b8.setTextSize(18);
-                    b8.setText("BOOK");
-                    tr.addView(b8);
                     tv.addView(tr);
                     final View vline1 = new View(getActivity());
                     vline1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, 1));
@@ -215,14 +205,14 @@ public class workersServices extends Fragment {
                 }
             }
         } catch (Exception e) {
-            Log.e("log_tag", "Error parsing data" + e.toString());
+            Log.e("log_tag", "Error parsing data reviews data" + e.toString());
 
         }}
         @Override
         protected String doInBackground(String... strings) {
             loc=strings[0];
 
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/workerServices.php";
+            String connectionString = "http://192.168.10.6/FYPHomeASsitant/Reviews.php";
 
             try {
                 URL url = new URL(connectionString);
