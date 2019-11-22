@@ -44,7 +44,7 @@
             android:paddingLeft="10dp"
             android:paddingTop="5dp"
             android:paddingRight="5dp"
-            android:text="Select category below to add services you are going to provide"
+            android:text="Select category below to add services you are going to provide(MAX 2)"
             android:textColor="@android:color/background_dark"
             android:textSize="22sp" />
 
@@ -59,7 +59,7 @@
             android:paddingTop="10dp">
 
             <CheckBox
-                android:id="@+id/checkBox"
+                android:id="@+id/checkBox1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -297,7 +297,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/update"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

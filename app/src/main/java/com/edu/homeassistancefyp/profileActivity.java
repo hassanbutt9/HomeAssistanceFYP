@@ -29,6 +29,8 @@ import java.net.URLEncoder;
 
 public class profileActivity extends AppCompatActivity implements workersServices.OnFragmentInteractionListener,Reviews.OnFragmentInteractionListener {
 RatingBar RB;
+TextView locat;
+TextView star;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +56,8 @@ RatingBar RB;
             //location= (String) savedInstanceState.getSerializable("location");
         }
         RB=(RatingBar)findViewById(R.id.ratingBar);
+        locat=(TextView) findViewById(R.id.loc);
+        star=(TextView) findViewById(R.id.star);
         db d=new db();
         d.execute(newString);
         TextView loc=(TextView) findViewById(R.id.loc);
@@ -108,7 +112,8 @@ RatingBar RB;
         {try {
             String[] separated = result.split(":");
             RB.setRating(Float.parseFloat(separated[0]));
-
+            star.setText(separated[0].substring(0,3));
+            locat.setText(separated[1]);
         } catch (Exception e) {
             Log.e("log_tag", "Error parsing data reviews data" + e.toString());
 

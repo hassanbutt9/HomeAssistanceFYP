@@ -136,7 +136,7 @@ public class Reviews extends Fragment {
         protected void onPostExecute(String result)
         {try {
             String[] separated = result.split(":");
-            Log.e("log_tagqbtaon", separated[5]);
+
             TableLayout tv = (TableLayout) view.findViewById(R.id.tableLayout);
             tv.removeAllViewsInLayout();
             int flag = 1;
