@@ -1,12 +1,27 @@
 package com.edu.homeassistancefyp;
 
 import android.content.Context;
+import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.google.android.gms.maps.model.LatLng;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 
 /**
@@ -17,7 +32,7 @@ import android.view.ViewGroup;
  * Use the {@link IndexFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class IndexFragment extends Fragment {
+public class IndexFragment extends Fragment implements LocationListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -26,7 +41,9 @@ public class IndexFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    LocationManager locationManager;
+    Location lastLocation;
+    String address;
     private OnFragmentInteractionListener mListener;
 
     public IndexFragment() {
@@ -55,16 +72,122 @@ public class IndexFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam1 = getArguments().getString("ARG_PARAM1");
+            mParam2 = getArguments().getString("ARG_PARAM2");
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_index, container, false);
+        View view =  inflater.inflate(R.layout.fragment_index,
+                container, false);
+        ImageView Beauty=(ImageView) view.findViewById(R.id.imageView6);
+        Beauty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getLocation();
+
+            }
+        });
+
+        ImageView Home=(ImageView) view.findViewById(R.id.imageView7);
+        Home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getLocation();
+                Intent sw=new Intent(getActivity(),new searchWorkers().getClass());
+                sw.putExtra("email",mParam1);
+                sw.putExtra("categorie","Car Wash");
+                sw.putExtra("location",address);
+
+                startActivity(sw);
+            }
+        });
+
+        ImageView Doctors=(ImageView) view.findViewById(R.id.imageView8);
+        Doctors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        ImageView CarWash=(ImageView) view.findViewById(R.id.imageView9);
+        CarWash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        ImageView Tutors=(ImageView) view.findViewById(R.id.imageView10);
+        Tutors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        ImageView Plumbers=(ImageView) view.findViewById(R.id.imageView11);
+        Plumbers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        ImageView Electrician=(ImageView) view.findViewById(R.id.imageView12);
+        Electrician.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        ImageView Massage=(ImageView) view.findViewById(R.id.imageView13);
+        Massage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        ImageView Fitness=(ImageView) view.findViewById(R.id.imageView14);
+        Fitness.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        ImageView Maid=(ImageView) view.findViewById(R.id.imageView15);
+        Maid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        ImageView Carpenter=(ImageView) view.findViewById(R.id.imageView16);
+        Carpenter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        ImageView Teacher=(ImageView) view.findViewById(R.id.imageView17);
+        Teacher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -89,6 +212,51 @@ public class IndexFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+    void getLocation() {
+        try {
+            locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5, this);
+        }
+        catch(SecurityException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        LatLng latLng=new LatLng(location.getLatitude(),location.getLongitude());
+        lastLocation=location;
+        try {
+            address=getAddress(latLng);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    private String getAddress(LatLng latLng) throws IOException {
+        String myCity="";
+        Geocoder geocoder=new Geocoder(getActivity(), Locale.getDefault());
+        List<Address> addresses=geocoder.getFromLocation(lastLocation.getLatitude(),lastLocation.getLongitude(),1);
+        String address=addresses.get(0).getAddressLine(0);
+        String City=addresses.get(0).getLocality();
+        Log.d("mylog", "Address"+address.toString());
+
+        return address;
+    }
+    @Override
+    public void onStatusChanged(String s, int i, Bundle bundle) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String s) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String s) {
+
     }
 
     /**

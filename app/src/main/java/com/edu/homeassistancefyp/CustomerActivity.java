@@ -43,7 +43,12 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
         TextView cusEmail = (TextView) headerView.findViewById(R.id.customerEmail);
         cusEmail.setText(newString);
 
-
+        Bundle bundle = new Bundle();
+        bundle.putString("ARG_PARAM1", newString);
+        bundle.putString("ARG_PARAM2",CustomerName);
+// set MyFragment Arguments
+        IndexFragment myObj = new IndexFragment();
+        myObj.setArguments(bundle);
 
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
