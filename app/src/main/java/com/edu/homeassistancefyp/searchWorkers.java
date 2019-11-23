@@ -2,6 +2,7 @@ package com.edu.homeassistancefyp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -59,23 +60,26 @@ public class searchWorkers extends AppCompatActivity {
     {
         String loc;
         String result="";
+        String stime="";
+        int z=0;
+        Button[] bt=new Button[10];
         protected void onPostExecute(String result)
         {try {
-            String[] separated = result.split(":");
+            final String[] separated = result.split(":");
             LinearLayout rootView = new LinearLayout(searchWorkers.this);
             rootView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             rootView.setOrientation(LinearLayout.VERTICAL);
             fl.addView(rootView);
 
-            for (int i = 0; i <= separated.length - 3; i++) {
+            z=0;
+            for (int i = 0; i <= separated.length - 4; i++) {
                 LinearLayout rootView2 = new LinearLayout(searchWorkers.this);
                 rootView2.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                 rootView2.setOrientation(LinearLayout.VERTICAL);
 
                 TextView b = new TextView(searchWorkers.this);
-                String stime = separated[i];
+                 stime = separated[i];
                 b.setText(stime);
-                Log.e("log_tagname", stime);
                 b.setPadding(50, 30, 0, 0);
                 b.setTextColor(Color.BLACK);
                 b.setTextSize(28);
@@ -107,12 +111,60 @@ public class searchWorkers extends AppCompatActivity {
                 b7.setTextColor(Color.BLACK);
                 rootView3.addView(b7);
 
-                Button b8=new Button(searchWorkers.this);
-                b8.setPadding(10, 15, 0, 20);
-                b8.setTextSize(20);
-                b8.setText("PROFILE");
-                b8.setTextColor(Color.BLACK);
-                rootView3.addView(b8);
+                bt[z]=new Button(searchWorkers.this);
+                bt[z].setPadding(10, 15, 0, 20);
+                bt[z].setTextSize(20);
+                bt[z].setText("PROFILE");
+                bt[z].setTextColor(Color.BLACK);
+                bt[z].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                       bt[0].setOnClickListener(new View.OnClickListener() {
+                           @Override
+                           public void onClick(View view) {
+                               Intent pa=new Intent(searchWorkers.this,new profileActivity().getClass());
+                               pa.putExtra("email",separated[3]);
+                               pa.putExtra("name",separated[0]);
+                               startActivity(pa);
+
+                           }
+                       });
+                        if(bt[1]!=null)
+                       bt[1].setOnClickListener(new View.OnClickListener() {
+                           @Override
+                           public void onClick(View view) {
+                               Intent pa=new Intent(searchWorkers.this,new profileActivity().getClass());
+                               pa.putExtra("email",separated[7]);
+                               pa.putExtra("name",separated[4]);
+                               startActivity(pa);
+                           }
+                       });
+                        if(bt[2]!=null)
+                            bt[2].setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent pa=new Intent(searchWorkers.this,new profileActivity().getClass());
+                                    pa.putExtra("email",separated[11]);
+                                    pa.putExtra("name",separated[8]);
+                                    startActivity(pa);
+                                }
+                            });
+                        if(bt[3]!=null)
+                            bt[3].setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent pa=new Intent(searchWorkers.this,new profileActivity().getClass());
+                                    pa.putExtra("email",separated[15]);
+                                    pa.putExtra("name",separated[12]);
+                                    startActivity(pa);
+                                }
+                            });
+
+                    }
+                });
+                rootView3.addView(bt[z]);
+                z++;
+                i++;
                 rootView2.addView(rootView3);
                 rootView.addView(rootView2);
                 final View vline1 = new View(searchWorkers.this);
