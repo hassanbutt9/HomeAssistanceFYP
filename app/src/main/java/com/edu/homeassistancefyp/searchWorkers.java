@@ -29,6 +29,7 @@ public class searchWorkers extends AppCompatActivity {
     String email;
     String categorie;
     String location;
+    String Custname;
     FrameLayout fl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,15 +41,18 @@ public class searchWorkers extends AppCompatActivity {
                 email=null;
                 categorie=null;
                 location=null;
+                Custname=null;
             } else {
                 email =extras.getString("email");
                 categorie = extras.getString("categorie");
                 location=extras.getString("location");
+                Custname=extras.getString("name");
             }
         } else {
             email= (String) savedInstanceState.getSerializable("email");
             categorie= (String) savedInstanceState.getSerializable("categorie");
             location=(String) savedInstanceState.getSerializable("location");
+            Custname=(String) savedInstanceState.getSerializable("name");
         }
         fl =(FrameLayout)findViewById(R.id.frameLayout2);
         fl.setBackgroundColor(Color.WHITE);
@@ -62,7 +66,9 @@ public class searchWorkers extends AppCompatActivity {
         String result="";
         String stime="";
         int z=0;
+        int y=0;
         Button[] bt=new Button[10];
+        Button[] btn=new Button[10];
         protected void onPostExecute(String result)
         {try {
             final String[] separated = result.split(":");
@@ -70,7 +76,7 @@ public class searchWorkers extends AppCompatActivity {
             rootView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             rootView.setOrientation(LinearLayout.VERTICAL);
             fl.addView(rootView);
-
+            y=0;
             z=0;
             for (int i = 0; i <= separated.length - 4; i++) {
                 LinearLayout rootView2 = new LinearLayout(searchWorkers.this);
@@ -104,12 +110,58 @@ public class searchWorkers extends AppCompatActivity {
                 LinearLayout rootView3 = new LinearLayout(searchWorkers.this);
                 rootView3.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                 rootView3.setOrientation(LinearLayout.HORIZONTAL);
-                Button b7=new Button(searchWorkers.this);
-                b7.setPadding(10, 15, 0, 20);
-                b7.setTextSize(20);
-                b7.setText("BOOK");
-                b7.setTextColor(Color.BLACK);
-                rootView3.addView(b7);
+
+
+
+
+                btn[y]=new Button(searchWorkers.this);
+                btn[y].setPadding(10, 15, 0, 20);
+                btn[y].setTextSize(20);
+                btn[y].setText("BOOK");
+                btn[y].setTextColor(Color.BLACK);
+                btn[y].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        btn[0].setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                        pending p=new pending();
+                        p.execute(Custname,email,location,separated[0],separated[3],separated[1],separated[2],categorie);
+                            }
+                        });
+                        if(btn[1]!=null)
+                            btn[1].setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+
+                                }
+                            });
+                        if(btn[2]!=null)
+                            btn[2].setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+
+                                }
+                            });
+                        if(btn[3]!=null)
+                            btn[3].setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+
+                                }
+                            });
+                        if(btn[4]!=null)
+                            btn[4].setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+
+                                }
+                            });
+
+
+                    }
+                });
+                rootView3.addView(btn[y]);
 
                 bt[z]=new Button(searchWorkers.this);
                 bt[z].setPadding(10, 15, 0, 20);
@@ -164,6 +216,7 @@ public class searchWorkers extends AppCompatActivity {
                 });
                 rootView3.addView(bt[z]);
                 z++;
+                y++;
                 i++;
                 rootView2.addView(rootView3);
                 rootView.addView(rootView2);
@@ -181,7 +234,7 @@ public class searchWorkers extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             loc=strings[0];
 
-            String connectionString = "http://192.168.10.7/FYPHomeASsitant/relatedWorker.php";
+            String connectionString = "http://192.168.10.5/FYPHomeASsitant/relatedWorker.php";
 
             try {
                 URL url = new URL(connectionString);
@@ -218,4 +271,84 @@ public class searchWorkers extends AppCompatActivity {
             return result;
         }
     }
+
+    public class pending extends AsyncTask<String, Void, String> {
+
+        String CName, CEmail, CLocation,WName,WEmail,WLocation,PerHourRate,Job;
+
+
+
+        @Override
+        protected void onPreExecute() {
+
+        }
+
+        @Override
+        protected void onPostExecute(String message) {
+
+            if(message.equals("insert successfully")){
+                Log.e("log_tag", "SUCCFULLL");
+            }
+            else
+                Log.e("log_tagaaaaaaaaa", message);
+        }
+
+        @Override
+        protected String doInBackground(String... voids) {
+            String result = "";
+            CName = voids[0];
+            CEmail = voids[1];
+            CLocation = voids[2];
+            WName =voids[3];
+             WEmail = voids[4];
+             WLocation=voids[5];
+             PerHourRate=voids[6];
+             Job=voids[7];
+            Log.e("log_tagaaaaaaaaa", CName +" "+CEmail+" "+ CLocation+" "+WName+" "+WEmail+" "+WLocation+" "+PerHourRate+" "+Job);
+            String connectionString = "http://192.168.10.5/FYPHomeASsitant/pendingJobs.php";
+
+            try {
+                URL url = new URL(connectionString);
+                HttpURLConnection http = (HttpURLConnection) url.openConnection();
+                http.setRequestMethod("POST");
+                http.setDoInput(true);
+                http.setDoOutput(true);
+
+                OutputStream ops = http.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(ops, "UTF-8"));
+                String data = URLEncoder.encode("CName", "UTF-8")+"="+URLEncoder.encode(CName, "UTF-8")
+                        +"&&"+URLEncoder.encode("CEmail", "UTF-8")+"="+URLEncoder.encode(CEmail, "UTF-8")
+                        +"&&"+URLEncoder.encode("CLocation", "UTF-8")+"="+URLEncoder.encode(CLocation, "UTF-8")
+                        +"&&"+URLEncoder.encode("WName", "UTF-8")+"="+ URLEncoder.encode(WName, "UTF-8")
+                        +"&&"+URLEncoder.encode("WEmail", "UTF-8")+"="+URLEncoder.encode(WEmail, "UTF-8")
+                        +"&&"+URLEncoder.encode("WLocation", "UTF-8")+"="+URLEncoder.encode(WLocation, "UTF-8")
+                        +"&&"+URLEncoder.encode("PerHourRate", "UTF-8")+"="+URLEncoder.encode(PerHourRate, "UTF-8")
+                        +"&&"+URLEncoder.encode("Job", "UTF-8")+"="+URLEncoder.encode(Job, "UTF-8");
+                Log.e("log_tagaaaaaaaaa", data);
+
+                writer.write(data);
+                writer.flush();
+                writer.close();
+                ops.close();
+
+                InputStream ips = http.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(ips, "ISO-8859-1"));
+                String line = "";
+                while ((line = reader.readLine()) != null){
+                    result += line;
+                }
+                reader.close();
+                ips.close();
+                http.disconnect();
+                return result;
+
+            } catch (Exception e) {
+                result = e.getMessage();
+            }
+
+
+            return result;
+        }
+    }
+
 }

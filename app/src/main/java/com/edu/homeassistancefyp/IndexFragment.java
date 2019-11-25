@@ -100,6 +100,7 @@ public class IndexFragment extends Fragment implements LocationListener {
                 sw.putExtra("email",mParam1);
                 sw.putExtra("categorie","Car Wash");
                 sw.putExtra("location",address);
+                sw.putExtra("name","abcd");
 
                 startActivity(sw);
             }
