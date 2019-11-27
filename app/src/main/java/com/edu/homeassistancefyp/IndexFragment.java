@@ -15,7 +15,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -42,6 +44,7 @@ public class IndexFragment extends Fragment implements LocationListener {
     private String mParam1;
     private String mParam2;
     LocationManager locationManager;
+    TextView loca;
     Location lastLocation;
     String address;
     private OnFragmentInteractionListener mListener;
@@ -82,6 +85,15 @@ public class IndexFragment extends Fragment implements LocationListener {
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_index,
                 container, false);
+        Button getLocationBtn = (Button) view.findViewById(R.id.button);
+        loca=(TextView) view.findViewById(R.id.loc);
+        getLocationBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getLocation();
+            }
+        });
+
         ImageView Beauty=(ImageView) view.findViewById(R.id.imageView6);
         Beauty.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +112,7 @@ public class IndexFragment extends Fragment implements LocationListener {
                 sw.putExtra("email",mParam1);
                 sw.putExtra("categorie","Car Wash");
                 sw.putExtra("location",address);
-                sw.putExtra("name","abcd");
+                sw.putExtra("name",mParam2);
 
                 startActivity(sw);
             }
@@ -230,6 +242,7 @@ public class IndexFragment extends Fragment implements LocationListener {
         lastLocation=location;
         try {
             address=getAddress(latLng);
+            loca.setText(address);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -122,7 +122,7 @@ TextView star;
         protected String doInBackground(String... strings) {
             loc=strings[0];
 
-            String connectionString = "http://192.168.10.5/FYPHomeASsitant/profileAvg.php";
+            String connectionString = "http://192.168.10.8/FYPHomeASsitant/profileAvg.php";
 
             try {
                 URL url = new URL(connectionString);

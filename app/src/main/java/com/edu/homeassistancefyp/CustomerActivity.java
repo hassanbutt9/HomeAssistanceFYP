@@ -60,7 +60,7 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         if(savedInstanceState==null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new IndexFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,myObj).commit();
             navigationView.setCheckedItem(R.id.nav_Home);
         }
     }
