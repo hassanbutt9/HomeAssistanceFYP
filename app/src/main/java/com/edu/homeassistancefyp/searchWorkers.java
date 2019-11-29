@@ -234,7 +234,7 @@ public class searchWorkers extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             loc=strings[0];
 
-            String connectionString = "http://192.168.10.8/FYPHomeASsitant/relatedWorker.php";
+            String connectionString = "http://192.168.10.6/FYPHomeASsitant/relatedWorker.php";
 
             try {
                 URL url = new URL(connectionString);
@@ -305,7 +305,7 @@ public class searchWorkers extends AppCompatActivity {
              PerHourRate=voids[6];
              Job=voids[7];
             Log.e("log_tagaaaaaaaaa", CName +" "+CEmail+" "+ CLocation+" "+WName+" "+WEmail+" "+WLocation+" "+PerHourRate+" "+Job);
-            String connectionString = "http://192.168.10.8/FYPHomeASsitant/pendingJobs.php";
+            String connectionString = "http://192.168.10.6/FYPHomeASsitant/pendingJobs.php";
 
             try {
                 URL url = new URL(connectionString);

@@ -166,7 +166,7 @@
                 android:scrollbarSize="3dp">
 
                 <TextView
-                    android:id="@+id/textView28"
+                    android:id="@+id/PJ"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="0"
