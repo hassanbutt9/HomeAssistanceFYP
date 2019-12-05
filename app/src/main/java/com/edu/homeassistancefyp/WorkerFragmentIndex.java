@@ -1,6 +1,7 @@
 package com.edu.homeassistancefyp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -170,7 +171,14 @@ public class WorkerFragmentIndex extends Fragment implements LocationListener {
             }
         });
 
-
+        PJ.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pend=new Intent(getActivity(),new PendingJobs().getClass());
+                pend.putExtra("email",mParam1);
+                startActivity(pend);
+            }
+        });
 
         return view;
     }
@@ -231,7 +239,7 @@ public class WorkerFragmentIndex extends Fragment implements LocationListener {
         protected Void doInBackground(String... strings) {
             loc=strings[0];
 
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/addLoc.php";
+            String connectionString = "http://192.168.10.4/FYPHomeASsitant/addLoc.php";
 
             try {
                 URL url = new URL(connectionString);
@@ -274,7 +282,7 @@ public class WorkerFragmentIndex extends Fragment implements LocationListener {
         protected Void doInBackground(String... strings) {
             String status=strings[0];
 
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/Status.php";
+            String connectionString = "http://192.168.10.4/FYPHomeASsitant/Status.php";
 
             try {
                 URL url = new URL(connectionString);
@@ -316,13 +324,17 @@ public class WorkerFragmentIndex extends Fragment implements LocationListener {
         @Override
         protected void onPostExecute(String message)
         {
-            PJ.setText(message);
+            if(!message.equals(null)) {
+                PJ.setText(message);
+
+
+            }
         }
         @Override
         protected String doInBackground(String... strings) {
             String status=strings[0];
 
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/PJ.php";
+            String connectionString = "http://192.168.10.4/FYPHomeASsitant/PJ.php";
 
             try {
                 URL url = new URL(connectionString);
