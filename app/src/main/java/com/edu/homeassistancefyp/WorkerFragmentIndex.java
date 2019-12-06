@@ -58,7 +58,7 @@ public class WorkerFragmentIndex extends Fragment implements LocationListener {
     LocationManager locationManager;
     Button getLocationBtn;
     Location lastLocation;
-    TextView PJ;
+    TextView PJ,UJ;
     private OnFragmentInteractionListener mListener;
 
     public WorkerFragmentIndex() {
@@ -143,6 +143,7 @@ public class WorkerFragmentIndex extends Fragment implements LocationListener {
         name.setText(mParam2);
         loca=(TextView) view.findViewById(R.id.loc);
         PJ=(TextView) view.findViewById(R.id.PJ);
+        UJ=(TextView) view.findViewById(R.id.UJ);
         getLocationBtn = (Button) view.findViewById(R.id.btn);
         getLocationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,6 +151,8 @@ public class WorkerFragmentIndex extends Fragment implements LocationListener {
                 getLocation();
                 checkJobs cj=new checkJobs();
                 cj.execute(mParam1);
+                checkUJobs uj=new checkUJobs();
+                uj.execute(mParam1);
             }
         });
 
@@ -239,7 +242,7 @@ public class WorkerFragmentIndex extends Fragment implements LocationListener {
         protected Void doInBackground(String... strings) {
             loc=strings[0];
 
-            String connectionString = "http://192.168.10.4/FYPHomeASsitant/addLoc.php";
+            String connectionString = "http://192.168.10.6/FYPHomeASsitant/addLoc.php";
 
             try {
                 URL url = new URL(connectionString);
@@ -282,7 +285,7 @@ public class WorkerFragmentIndex extends Fragment implements LocationListener {
         protected Void doInBackground(String... strings) {
             String status=strings[0];
 
-            String connectionString = "http://192.168.10.4/FYPHomeASsitant/Status.php";
+            String connectionString = "http://192.168.10.6/FYPHomeASsitant/Status.php";
 
             try {
                 URL url = new URL(connectionString);
@@ -334,7 +337,60 @@ public class WorkerFragmentIndex extends Fragment implements LocationListener {
         protected String doInBackground(String... strings) {
             String status=strings[0];
 
-            String connectionString = "http://192.168.10.4/FYPHomeASsitant/PJ.php";
+            String connectionString = "http://192.168.10.6/FYPHomeASsitant/PJ.php";
+
+            try {
+                URL url = new URL(connectionString);
+                HttpURLConnection http = (HttpURLConnection) url.openConnection();
+                http.setRequestMethod("POST");
+                http.setDoInput(true);
+                http.setDoOutput(true);
+
+                OutputStream ops = http.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(ops, "UTF-8"));
+                String data = URLEncoder.encode("email", "UTF-8")+"="+URLEncoder.encode(mParam1, "UTF-8");
+                writer.write(data);
+                writer.flush();
+                writer.close();
+                ops.close();
+
+                InputStream ips = http.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(ips, "ISO-8859-1"));
+                String line = "";
+                while ((line = reader.readLine()) != null){
+                    result += line;
+                }
+                reader.close();
+                ips.close();
+                http.disconnect();
+                return  result;
+
+            } catch (Exception e) {
+                result = e.getMessage();
+            }
+            return result;
+        }
+    }
+    class checkUJobs extends AsyncTask<String,Void,String>
+    {
+
+        String result="";
+        @Override
+        protected void onPostExecute(String message)
+        {
+            if(!message.equals(null)) {
+                UJ.setText(message);
+                PJ.setEnabled(false);
+
+            }
+            else
+                PJ.setEnabled(true);
+        }
+        @Override
+        protected String doInBackground(String... strings) {
+            String status=strings[0];
+
+            String connectionString = "http://192.168.10.6/FYPHomeASsitant/UJ.php";
 
             try {
                 URL url = new URL(connectionString);

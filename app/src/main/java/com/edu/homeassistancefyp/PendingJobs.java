@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -112,35 +113,40 @@ public class PendingJobs extends AppCompatActivity {
                         btn[0].setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-
+                                Acceptpending ap=new Acceptpending();
+                                ap.execute(separated[0],email,separated[2]);
                             }
                         });
                         if(btn[1]!=null)
                             btn[1].setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-
+                                    Acceptpending ap=new Acceptpending();
+                                    ap.execute(separated[3],email,separated[5]);;
                                 }
                             });
                         if(btn[2]!=null)
                             btn[2].setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-
+                                    Acceptpending ap=new Acceptpending();
+                                    ap.execute(separated[6],email,separated[8]);
                                 }
                             });
                         if(btn[3]!=null)
                             btn[3].setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-
+                                    Acceptpending ap=new Acceptpending();
+                                    ap.execute(separated[9],email,separated[11]);
                                 }
                             });
                         if(btn[4]!=null)
                             btn[4].setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-
+                                    Acceptpending ap=new Acceptpending();
+                                    ap.execute(separated[12],email,separated[14]);
                                 }
                             });
 
@@ -160,10 +166,8 @@ public class PendingJobs extends AppCompatActivity {
                         bt[0].setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Intent pa=new Intent(PendingJobs.this,new profileActivity().getClass());
-                                pa.putExtra("email",separated[3]);
-                                pa.putExtra("name",separated[0]);
-                                startActivity(pa);
+                            Rejectpending rp=new Rejectpending();
+                            rp.execute(separated[0],email,separated[2]);
 
                             }
                         });
@@ -171,30 +175,24 @@ public class PendingJobs extends AppCompatActivity {
                             bt[1].setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    Intent pa=new Intent(PendingJobs.this,new profileActivity().getClass());
-                                    pa.putExtra("email",separated[7]);
-                                    pa.putExtra("name",separated[4]);
-                                    startActivity(pa);
+                                    Rejectpending rp=new Rejectpending();
+                                    rp.execute(separated[3],email,separated[5]);
                                 }
                             });
                         if(bt[2]!=null)
                             bt[2].setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    Intent pa=new Intent(PendingJobs.this,new profileActivity().getClass());
-                                    pa.putExtra("email",separated[11]);
-                                    pa.putExtra("name",separated[8]);
-                                    startActivity(pa);
+                                    Rejectpending rp=new Rejectpending();
+                                    rp.execute(separated[6],email,separated[8]);
                                 }
                             });
                         if(bt[3]!=null)
                             bt[3].setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    Intent pa=new Intent(PendingJobs.this,new profileActivity().getClass());
-                                    pa.putExtra("email",separated[15]);
-                                    pa.putExtra("name",separated[12]);
-                                    startActivity(pa);
+                                    Rejectpending rp=new Rejectpending();
+                                    rp.execute(separated[9],email,separated[11]);
                                 }
                             });
 
@@ -220,7 +218,7 @@ public class PendingJobs extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             loc=strings[0];
 
-            String connectionString = "http://192.168.10.4/FYPHomeASsitant/PJ2.php";
+            String connectionString = "http://192.168.10.6/FYPHomeASsitant/PJ2.php";
 
             try {
                 URL url = new URL(connectionString);
@@ -257,5 +255,147 @@ public class PendingJobs extends AppCompatActivity {
             return result;
         }
     }
+    public class Acceptpending extends AsyncTask<String, Void, String> {
 
+        String WEmail,Job,CName;
+
+
+
+        @Override
+        protected void onPreExecute() {
+
+        }
+
+        @Override
+        protected void onPostExecute(String message) {
+
+            if(message.equals("insert successfully")){
+
+                Log.e("log_tag", "Rejected");
+                Toast.makeText(PendingJobs.this, "Job Accepted Successfully. You can see it in Upcoming Jobs", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+            else
+                Toast.makeText(PendingJobs.this, "Sory .Some Thing Went Wrong", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        protected String doInBackground(String... voids) {
+            String result = "";
+            CName = voids[0];
+            WEmail = voids[1];
+            Job=voids[2];
+            Log.e("log_tagaaaaaaaaa", CName +" "+WEmail+" "+Job);
+            String connectionString = "http://192.168.10.6/FYPHomeASsitant/AcceptPJ.php";
+
+            try {
+                URL url = new URL(connectionString);
+                HttpURLConnection http = (HttpURLConnection) url.openConnection();
+                http.setRequestMethod("POST");
+                http.setDoInput(true);
+                http.setDoOutput(true);
+
+                OutputStream ops = http.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(ops, "UTF-8"));
+                String data = URLEncoder.encode("CName", "UTF-8")+"="+URLEncoder.encode(CName, "UTF-8")
+                        +"&&"+URLEncoder.encode("WEmail", "UTF-8")+"="+URLEncoder.encode(WEmail, "UTF-8")
+                        +"&&"+URLEncoder.encode("Status", "UTF-8")+"="+URLEncoder.encode("Accepted", "UTF-8")
+                        +"&&"+URLEncoder.encode("Job", "UTF-8")+"="+URLEncoder.encode(Job, "UTF-8");
+                Log.e("log_tagaaaaaaaaa", data);
+
+                writer.write(data);
+                writer.flush();
+                writer.close();
+                ops.close();
+
+                InputStream ips = http.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(ips, "ISO-8859-1"));
+                String line = "";
+                while ((line = reader.readLine()) != null){
+                    result += line;
+                }
+                reader.close();
+                ips.close();
+                http.disconnect();
+                return result;
+
+            } catch (Exception e) {
+                result = e.getMessage();
+            }
+
+
+            return result;
+        }
+    } public class Rejectpending extends AsyncTask<String, Void, String> {
+
+        String WEmail,Job,CName;
+
+
+
+        @Override
+        protected void onPreExecute() {
+
+        }
+
+        @Override
+        protected void onPostExecute(String message) {
+
+            if(message.equals("insert successfully")){
+
+                Log.e("log_tag", "Rejected");
+                Toast.makeText(PendingJobs.this, "Job Rejected Successfully", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+            else
+                Toast.makeText(PendingJobs.this, "Sory .Some Thing Went Wrong", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        protected String doInBackground(String... voids) {
+            String result = "";
+            CName = voids[0];
+            WEmail = voids[1];
+            Job=voids[2];
+            Log.e("log_tagaaaaaaaaa", CName +" "+WEmail+" "+Job);
+            String connectionString = "http://192.168.10.6/FYPHomeASsitant/RejectPJ.php";
+
+            try {
+                URL url = new URL(connectionString);
+                HttpURLConnection http = (HttpURLConnection) url.openConnection();
+                http.setRequestMethod("POST");
+                http.setDoInput(true);
+                http.setDoOutput(true);
+
+                OutputStream ops = http.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(ops, "UTF-8"));
+                String data = URLEncoder.encode("CName", "UTF-8")+"="+URLEncoder.encode(CName, "UTF-8")
+                        +"&&"+URLEncoder.encode("WEmail", "UTF-8")+"="+URLEncoder.encode(WEmail, "UTF-8")
+                        +"&&"+URLEncoder.encode("Status", "UTF-8")+"="+URLEncoder.encode("Rejected", "UTF-8")
+                        +"&&"+URLEncoder.encode("Job", "UTF-8")+"="+URLEncoder.encode(Job, "UTF-8");
+                Log.e("log_tagaaaaaaaaa", data);
+
+                writer.write(data);
+                writer.flush();
+                writer.close();
+                ops.close();
+
+                InputStream ips = http.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(ips, "ISO-8859-1"));
+                String line = "";
+                while ((line = reader.readLine()) != null){
+                    result += line;
+                }
+                reader.close();
+                ips.close();
+                http.disconnect();
+                return result;
+
+            } catch (Exception e) {
+                result = e.getMessage();
+            }
+
+
+            return result;
+        }
+    }
 }

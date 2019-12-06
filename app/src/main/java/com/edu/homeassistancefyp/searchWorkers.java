@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -133,28 +134,32 @@ public class searchWorkers extends AppCompatActivity {
                             btn[1].setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-
+                                    pending p=new pending();
+                                    p.execute(Custname,email,location,separated[4],separated[7],separated[5],separated[6],categorie);
                                 }
                             });
                         if(btn[2]!=null)
                             btn[2].setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-
+                                    pending p=new pending();
+                                    p.execute(Custname,email,location,separated[8],separated[11],separated[9],separated[10],categorie);
                                 }
                             });
                         if(btn[3]!=null)
                             btn[3].setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-
+                                    pending p=new pending();
+                                    p.execute(Custname,email,location,separated[12],separated[15],separated[13],separated[14],categorie);
                                 }
                             });
                         if(btn[4]!=null)
                             btn[4].setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-
+                                    pending p=new pending();
+                                    p.execute(Custname,email,location,separated[16],separated[19],separated[17],separated[18],categorie);
                                 }
                             });
 
@@ -234,7 +239,7 @@ public class searchWorkers extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             loc=strings[0];
 
-            String connectionString = "http://192.168.10.4/FYPHomeASsitant/relatedWorker.php";
+            String connectionString = "http://192.168.10.6/FYPHomeASsitant/relatedWorker.php";
 
             try {
                 URL url = new URL(connectionString);
@@ -288,9 +293,12 @@ public class searchWorkers extends AppCompatActivity {
 
             if(message.equals("insert successfully")){
                 Log.e("log_tag", "SUCCFULLL");
+                Toast.makeText(searchWorkers.this, "Worker Booked Successfully..Wait for accepting by Worker", Toast.LENGTH_SHORT).show();
+                finish();
             }
             else
                 Log.e("log_tagaaaaaaaaa", message);
+            Toast.makeText(searchWorkers.this, "Sorry Something Went Wrong", Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -305,7 +313,7 @@ public class searchWorkers extends AppCompatActivity {
              PerHourRate=voids[6];
              Job=voids[7];
             Log.e("log_tagaaaaaaaaa", CName +" "+CEmail+" "+ CLocation+" "+WName+" "+WEmail+" "+WLocation+" "+PerHourRate+" "+Job);
-            String connectionString = "http://192.168.10.4/FYPHomeASsitant/pendingJobs.php";
+            String connectionString = "http://192.168.10.6/FYPHomeASsitant/pendingJobs.php";
 
             try {
                 URL url = new URL(connectionString);

@@ -98,13 +98,51 @@ public class IndexFragment extends Fragment implements LocationListener {
         Beauty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 getLocation();
+                Intent sw=new Intent(getActivity(),new searchWorkers().getClass());
+                sw.putExtra("email",mParam1);
+                sw.putExtra("categorie","Beauty");
+                sw.putExtra("location",address);
+                sw.putExtra("name",mParam2);
+
+                startActivity(sw);
 
             }
         });
 
         ImageView Home=(ImageView) view.findViewById(R.id.imageView7);
         Home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getLocation();
+                Intent sw=new Intent(getActivity(),new searchWorkers().getClass());
+                sw.putExtra("email",mParam1);
+                sw.putExtra("categorie","Home Cleaning");
+                sw.putExtra("location",address);
+                sw.putExtra("name",mParam2);
+
+                startActivity(sw);
+            }
+        });
+
+        ImageView Doctors=(ImageView) view.findViewById(R.id.imageView8);
+        Doctors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getLocation();
+                Intent sw=new Intent(getActivity(),new searchWorkers().getClass());
+                sw.putExtra("email",mParam1);
+                sw.putExtra("categorie","Doctors");
+                sw.putExtra("location",address);
+                sw.putExtra("name",mParam2);
+
+                startActivity(sw);
+            }
+        });
+
+        ImageView CarWash=(ImageView) view.findViewById(R.id.imageView9);
+        CarWash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getLocation();
@@ -118,27 +156,18 @@ public class IndexFragment extends Fragment implements LocationListener {
             }
         });
 
-        ImageView Doctors=(ImageView) view.findViewById(R.id.imageView8);
-        Doctors.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
-        ImageView CarWash=(ImageView) view.findViewById(R.id.imageView9);
-        CarWash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
         ImageView Tutors=(ImageView) view.findViewById(R.id.imageView10);
         Tutors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getLocation();
+                Intent sw=new Intent(getActivity(),new searchWorkers().getClass());
+                sw.putExtra("email",mParam1);
+                sw.putExtra("categorie","Tutors");
+                sw.putExtra("location",address);
+                sw.putExtra("name",mParam2);
 
+                startActivity(sw);
             }
         });
 
@@ -146,7 +175,14 @@ public class IndexFragment extends Fragment implements LocationListener {
         Plumbers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getLocation();
+                Intent sw=new Intent(getActivity(),new searchWorkers().getClass());
+                sw.putExtra("email",mParam1);
+                sw.putExtra("categorie","Plumbers");
+                sw.putExtra("location",address);
+                sw.putExtra("name",mParam2);
 
+                startActivity(sw);
             }
         });
 
@@ -154,7 +190,14 @@ public class IndexFragment extends Fragment implements LocationListener {
         Electrician.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getLocation();
+                Intent sw=new Intent(getActivity(),new searchWorkers().getClass());
+                sw.putExtra("email",mParam1);
+                sw.putExtra("categorie","Electrician");
+                sw.putExtra("location",address);
+                sw.putExtra("name",mParam2);
 
+                startActivity(sw);
             }
         });
 
@@ -162,7 +205,14 @@ public class IndexFragment extends Fragment implements LocationListener {
         Massage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getLocation();
+                Intent sw=new Intent(getActivity(),new searchWorkers().getClass());
+                sw.putExtra("email",mParam1);
+                sw.putExtra("categorie","Massage");
+                sw.putExtra("location",address);
+                sw.putExtra("name",mParam2);
 
+                startActivity(sw);
             }
         });
 
@@ -170,7 +220,14 @@ public class IndexFragment extends Fragment implements LocationListener {
         Fitness.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getLocation();
+                Intent sw=new Intent(getActivity(),new searchWorkers().getClass());
+                sw.putExtra("email",mParam1);
+                sw.putExtra("categorie","Fitness");
+                sw.putExtra("location",address);
+                sw.putExtra("name",mParam2);
 
+                startActivity(sw);
             }
         });
 
@@ -178,7 +235,14 @@ public class IndexFragment extends Fragment implements LocationListener {
         Maid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getLocation();
+                Intent sw=new Intent(getActivity(),new searchWorkers().getClass());
+                sw.putExtra("email",mParam1);
+                sw.putExtra("categorie","Maid");
+                sw.putExtra("location",address);
+                sw.putExtra("name",mParam2);
 
+                startActivity(sw);
             }
         });
 
@@ -186,7 +250,14 @@ public class IndexFragment extends Fragment implements LocationListener {
         Carpenter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getLocation();
+                Intent sw=new Intent(getActivity(),new searchWorkers().getClass());
+                sw.putExtra("email",mParam1);
+                sw.putExtra("categorie","Carpenter");
+                sw.putExtra("location",address);
+                sw.putExtra("name",mParam2);
 
+                startActivity(sw);
             }
         });
 
@@ -194,7 +265,14 @@ public class IndexFragment extends Fragment implements LocationListener {
         Teacher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getLocation();
+                Intent sw=new Intent(getActivity(),new searchWorkers().getClass());
+                sw.putExtra("email",mParam1);
+                sw.putExtra("categorie","Teacher");
+                sw.putExtra("location",address);
+                sw.putExtra("name",mParam2);
 
+                startActivity(sw);
             }
         });
 
