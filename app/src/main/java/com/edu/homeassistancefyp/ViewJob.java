@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -24,6 +25,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ViewJob extends AppCompatActivity {
 String name,email,user;
@@ -161,7 +164,8 @@ String name,email,user;
                     start.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-
+                        StartJob sj=new StartJob();
+                        sj.execute(email);
                         }
                     });
                 }
@@ -216,5 +220,82 @@ String name,email,user;
             return result;
         }
     }
+    public class StartJob extends AsyncTask<String, Void, String> {
 
+        String WEmail,Job,CName;
+
+
+
+        @Override
+        protected void onPreExecute() {
+
+        }
+
+        @Override
+        protected void onPostExecute(String message) {
+
+            if(message.equals("insert successfully")){
+
+                Log.e("log_tag", "Rejected");
+                Toast.makeText(ViewJob.this, "Job Started.See Status in My Jobs", Toast.LENGTH_SHORT).show();
+                Intent i=new Intent(ViewJob.this,new timer().getClass());
+                i.putExtra("email",email);
+                i.putExtra("name",name);
+                i.putExtra("user",user);
+                startActivity(i);
+                finish();
+
+
+            }
+            else
+                Toast.makeText(ViewJob.this, "Sory .Some Thing Went Wrong", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        protected String doInBackground(String... voids) {
+            String result = "";
+
+            Log.e("log_tagaaaaaaaaa", CName +" "+WEmail+" "+Job);
+            String connectionString = "http://192.168.10.7/FYPHomeASsitant/StartJob.php";
+
+            try {
+                Date d=new Date();
+                SimpleDateFormat sdf=new SimpleDateFormat("hh:mm a");
+                String currentDateTimeString = sdf.format(d);
+
+                URL url = new URL(connectionString);
+                HttpURLConnection http = (HttpURLConnection) url.openConnection();
+                http.setRequestMethod("POST");
+                http.setDoInput(true);
+                http.setDoOutput(true);
+
+                OutputStream ops = http.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(ops, "UTF-8"));
+                String data = URLEncoder.encode("email", "UTF-8")+"="+URLEncoder.encode(email, "UTF-8")
+                        +"&&"+URLEncoder.encode("startTime", "UTF-8")+"="+URLEncoder.encode(currentDateTimeString, "UTF-8");;
+                Log.e("log_tagaaaaaaaaa", data);
+
+                writer.write(data);
+                writer.flush();
+                writer.close();
+                ops.close();
+
+                InputStream ips = http.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(ips, "ISO-8859-1"));
+                String line = "";
+                while ((line = reader.readLine()) != null){
+                    result += line;
+                }
+                reader.close();
+                ips.close();
+                http.disconnect();
+                return result;
+
+            } catch (Exception e) {
+                result = e.getMessage();
+            }
+
+
+            return result;
+        }}
 }
