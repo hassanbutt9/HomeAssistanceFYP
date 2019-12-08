@@ -17,12 +17,13 @@ import android.widget.TextView;
 
 public class CustomerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,ProfileFragment.OnFragmentInteractionListener,IndexFragment.OnFragmentInteractionListener{
     private DrawerLayout drawerLayout;
+    String newString;
+    String CustomerName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer);
-        String newString;
-        String CustomerName;
+
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
@@ -81,6 +82,13 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
                 break;
             case R.id.nav_Home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new IndexFragment()).commit();
+                break;
+            case R.id.nav_myJobs:
+                Intent viewJob  = new Intent(this,new ViewJob().getClass());
+                viewJob.putExtra("email",newString);
+                viewJob.putExtra("name",CustomerName);
+                viewJob.putExtra("user","customer");
+                startActivity(viewJob);
                 break;
             case R.id.nav_Logout:
                 Intent login  = new Intent(this,new LoginInterface().getClass());

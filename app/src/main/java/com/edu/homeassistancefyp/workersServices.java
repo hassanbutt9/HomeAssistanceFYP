@@ -222,7 +222,7 @@ public class workersServices extends Fragment {
         protected String doInBackground(String... strings) {
             loc=strings[0];
 
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/workerServices.php";
+            String connectionString = "http://192.168.10.7/FYPHomeASsitant/workerServices.php";
 
             try {
                 URL url = new URL(connectionString);

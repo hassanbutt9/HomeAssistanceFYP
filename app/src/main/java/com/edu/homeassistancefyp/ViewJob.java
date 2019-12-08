@@ -49,6 +49,8 @@ String name,email,user;
             user= (String) savedInstanceState.getSerializable("user");
         }
         fl=(FrameLayout) findViewById(R.id.frameLayout4);
+        db d=new db();
+        d.execute(email);
     }
 
     class db extends AsyncTask<String,Void,String>
@@ -74,7 +76,7 @@ String name,email,user;
             c.setTextSize(28);
             rootView.addView(c);
             z=0;
-            for (int i = 0; i <= separated.length - 4; i++) {
+            for (int i = 0; i <= separated.length - 5; i++) {
                 LinearLayout rootView2 = new LinearLayout(ViewJob.this);
                 rootView2.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                 rootView2.setOrientation(LinearLayout.VERTICAL);
@@ -84,7 +86,7 @@ String name,email,user;
                 b.setText(stime);
                 b.setPadding(50, 30, 0, 0);
                 b.setTextColor(Color.BLACK);
-                b.setTextSize(28);
+                b.setTextSize(22);
                 rootView2.addView(b);
                 i++;
                 TextView b1 = new TextView(ViewJob.this);
@@ -95,84 +97,78 @@ String name,email,user;
                 b1.setTextColor(Color.BLACK);
                 rootView2.addView(b1);
                 i++;
-                TextView b2 = new TextView(ViewJob.this);
-                b2.setPadding(30, 15, 0, 0);
-                b2.setTextSize(20);
-                String stime2 = separated[i];
-                b2.setText("Per Hour Rate : "+stime2);
-                b2.setTextColor(Color.BLACK);
-                rootView2.addView(b2);
-
-                LinearLayout rootView3 = new LinearLayout(ViewJob.this);
-                rootView3.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                rootView3.setOrientation(LinearLayout.HORIZONTAL);
-
-
-
-
-
-
-                bt[z]=new Button(ViewJob.this);
-                bt[z].setPadding(10, 15, 0, 20);
-                bt[z].setTextSize(20);
-                bt[z].setText("PROFILE");
-                bt[z].setTextColor(Color.BLACK);
-                bt[z].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        bt[0].setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent pa=new Intent(ViewJob.this,new profileActivity().getClass());
-                                pa.putExtra("email",separated[3]);
-                                pa.putExtra("name",separated[0]);
-                                startActivity(pa);
-
-                            }
-                        });
-                        if(bt[1]!=null)
-                            bt[1].setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    Intent pa=new Intent(ViewJob.this,new profileActivity().getClass());
-                                    pa.putExtra("email",separated[7]);
-                                    pa.putExtra("name",separated[4]);
-                                    startActivity(pa);
-                                }
-                            });
-                        if(bt[2]!=null)
-                            bt[2].setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    Intent pa=new Intent(ViewJob.this,new profileActivity().getClass());
-                                    pa.putExtra("email",separated[11]);
-                                    pa.putExtra("name",separated[8]);
-                                    startActivity(pa);
-                                }
-                            });
-                        if(bt[3]!=null)
-                            bt[3].setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    Intent pa=new Intent(ViewJob.this,new profileActivity().getClass());
-                                    pa.putExtra("email",separated[15]);
-                                    pa.putExtra("name",separated[12]);
-                                    startActivity(pa);
-                                }
-                            });
-
-                    }
-                });
-                rootView3.addView(bt[z]);
-                z++;
-
-                i++;
-                rootView2.addView(rootView3);
-                rootView.addView(rootView2);
                 final View vline1 = new View(ViewJob.this);
                 vline1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 1));
                 vline1.setBackgroundColor(Color.RED);
-                rootView.addView(vline1);
+                rootView2.addView(vline1);
+
+                TextView d=new TextView(ViewJob.this);
+                d.setText("WORKER");
+                d.setPadding(15, 50, 0, 0);
+                d.setTextColor(Color.BLACK);
+                d.setTextSize(29);
+                rootView2.addView(d);
+
+                TextView b2 = new TextView(ViewJob.this);
+                b2.setPadding(50, 30, 0, 0);
+                b2.setTextSize(22);
+                String stime2 = separated[i];
+                b2.setText(stime2);
+                b2.setTextColor(Color.BLACK);
+                rootView2.addView(b2);
+                i++;
+
+                TextView b3 = new TextView(ViewJob.this);
+                b3.setPadding(30, 15, 30, 0);
+                b3.setTextSize(20);
+                String stime3 = separated[i];
+                b3.setText(stime1);
+                b3.setTextColor(Color.BLACK);
+                rootView2.addView(b3);
+                i++;
+
+                final View vline2 = new View(ViewJob.this);
+                vline2.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 1));
+                vline2.setBackgroundColor(Color.RED);
+                rootView2.addView(vline2);
+
+                TextView b4 = new TextView(ViewJob.this);
+                b4.setPadding(30, 30, 30, 0);
+                b4.setTextSize(25);
+                String stime4 = separated[i];
+                b4.setText(stime4);
+                b4.setTextColor(Color.BLACK);
+                rootView2.addView(b4);
+                i++;
+
+                TextView b5 = new TextView(ViewJob.this);
+                b5.setPadding(30, 15, 30, 0);
+                b5.setTextSize(25);
+                String stime5 = separated[i];
+                b5.setText("Per Hour Rate"+stime5);
+                b5.setTextColor(Color.BLACK);
+                rootView2.addView(b5);
+                if(user.equals("customer"))
+                {
+                    Button start=new Button(ViewJob.this);
+                    start.setPadding(30, 30, 30, 0);
+                    start.setTextSize(25);
+                    start.setText("Start Job");
+                    start.setTextColor(Color.BLACK);
+                    rootView2.addView(start);
+
+
+                    start.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    });
+                }
+
+
+                rootView.addView(rootView2);
+
 
             }
         } catch (Exception e) {
@@ -183,7 +179,7 @@ String name,email,user;
         protected String doInBackground(String... strings) {
             loc=strings[0];
 
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/relatedWorker.php";
+            String connectionString = "http://192.168.10.7/FYPHomeASsitant/viewJob.php";
 
             try {
                 URL url = new URL(connectionString);

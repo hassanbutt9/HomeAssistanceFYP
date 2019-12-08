@@ -218,7 +218,7 @@ public class PendingJobs extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             loc=strings[0];
 
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/PJ2.php";
+            String connectionString = "http://192.168.10.7/FYPHomeASsitant/PJ2.php";
 
             try {
                 URL url = new URL(connectionString);
@@ -286,7 +286,7 @@ public class PendingJobs extends AppCompatActivity {
             WEmail = voids[1];
             Job=voids[2];
             Log.e("log_tagaaaaaaaaa", CName +" "+WEmail+" "+Job);
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/AcceptPJ.php";
+            String connectionString = "http://192.168.10.7/FYPHomeASsitant/AcceptPJ.php";
 
             try {
                 URL url = new URL(connectionString);
@@ -357,7 +357,7 @@ public class PendingJobs extends AppCompatActivity {
             WEmail = voids[1];
             Job=voids[2];
             Log.e("log_tagaaaaaaaaa", CName +" "+WEmail+" "+Job);
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/RejectPJ.php";
+            String connectionString = "http://192.168.10.7/FYPHomeASsitant/RejectPJ.php";
 
             try {
                 URL url = new URL(connectionString);
