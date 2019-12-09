@@ -84,10 +84,11 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new IndexFragment()).commit();
                 break;
             case R.id.nav_myJobs:
-                Intent viewJob  = new Intent(this,new timer().getClass());
+                Intent viewJob  = new Intent(this,new Payment().getClass());
                 viewJob.putExtra("email",newString);
                 viewJob.putExtra("name",CustomerName);
                 viewJob.putExtra("user","customer");
+                viewJob.putExtra("PID","2");
                 startActivity(viewJob);
                 break;
             case R.id.nav_Logout:

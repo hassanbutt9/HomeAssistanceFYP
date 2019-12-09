@@ -23,6 +23,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Payment extends AppCompatActivity {
 String name,email,user,PID;
@@ -101,6 +103,8 @@ FrameLayout fl;
                 TextView b1 = new TextView(Payment.this);
                 b1.setPadding(30, 15, 30, 0);
                 b1.setTextSize(22);
+                String h1=separated[i];
+                String m1=separated[i+1];
                 String stime1 = separated[i]+":"+separated[i+1];
                 b1.setText("Start Time: "+stime1);
                 b1.setTextColor(Color.BLACK);
@@ -116,10 +120,27 @@ FrameLayout fl;
                 TextView b2 = new TextView(Payment.this);
                 b2.setPadding(30, 15, 30, 0);
                 b2.setTextSize(22);
+                String h2=separated[i];
+                String m2=separated[i+1];
                 String stime2 = separated[i]+":"+separated[i+1];
                 b2.setText("End Time: "+stime2);
                 b2.setTextColor(Color.BLACK);
                 rootView2.addView(b2);
+
+
+
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm a");
+                Date date1 = simpleDateFormat.parse(stime1);
+                Date date2 = simpleDateFormat.parse(stime2);
+
+                long difference = date2.getTime() - date1.getTime();
+                int days = (int) (difference / (1000*60*60*24));
+                int hours = (int) ((difference - (1000*60*60*24*days)) / (1000*60*60));
+                int min = (int) (difference - (1000*60*60*24*days) - (1000*60*60*hours)) / (1000*60);
+                hours = (hours < 0 ? -hours : hours);
+                Log.i("======= Hours"," :: "+hours);
+
+
                 i++;
 
                 i++;
@@ -128,12 +149,14 @@ FrameLayout fl;
                 vline2.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, 1));
                 vline2.setBackgroundColor(Color.RED);
                 rootView2.addView(vline2);
+                int hourd=Integer.valueOf(h2)-Integer.valueOf(h1);
+                int mind=Integer.valueOf(m2.substring(0,2))-Integer.valueOf(m1.substring(0,2));
 
                 TextView b4 = new TextView(Payment.this);
                 b4.setPadding(30, 30, 30, 0);
                 b4.setTextSize(25);
 
-                b4.setText("Estimated Time : ");
+                b4.setText("Estimated Time : 0"+hours+" Hours "+String.valueOf(mind)+ " Minutes");
                 b4.setTextColor(Color.BLACK);
                 rootView2.addView(b4);
 
@@ -142,25 +165,46 @@ FrameLayout fl;
                 TextView b6 = new TextView(Payment.this);
                 b6.setPadding(30, 15, 30, 0);
                 b6.setTextSize(25);
+                int pay;
+                    if(hours<01)
+                    {
+                        pay=Integer.valueOf(stime5);
+                    }
+                    else
+                        pay=hours*Integer.valueOf(stime5);
 
-                b6.setText("Total Payment: ");
+                b6.setText("Total Payment: "+pay);
                 b6.setTextColor(Color.BLACK);
                 rootView2.addView(b6);
 
 
 
 
+
                 if(user.equals("customer"))
                 {
-                    Button start=new Button(Payment.this);
-                    start.setPadding(30, 30, 30, 30);
-                    start.setTextSize(25);
-                    start.setText("Pay By PayPAL");
-                    start.setTextColor(Color.BLACK);
-                    rootView2.addView(start);
+                    Button paypal=new Button(Payment.this);
+                    paypal.setPadding(30, 30, 30, 30);
+                    paypal.setTextSize(25);
+                    paypal.setText("Pay By PayPAL");
+                    paypal.setTextColor(Color.BLACK);
+                    rootView2.addView(paypal);
 
 
-                    start.setOnClickListener(new View.OnClickListener() {
+                    paypal.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+
+                        }
+                    });
+                    Button cash=new Button(Payment.this);
+                    cash.setPadding(30, 30, 30, 30);
+                    cash.setTextSize(25);
+                    cash.setText("Pay in Cash");
+                    cash.setTextColor(Color.BLACK);
+                    rootView2.addView(cash);
+                    cash.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
 
