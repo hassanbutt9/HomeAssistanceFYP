@@ -125,9 +125,13 @@ public class WorkerActivity extends AppCompatActivity implements NavigationView.
             case R.id.nav_Logout:
                 Intent login2  = new Intent(this,new LoginInterface().getClass());
                 startActivity(login2);
+                finish();
                 break;
             case R.id.nav_myJobs:
-                startActivity(new Intent(this,new ManageServices().getClass()));
+                Intent b = new Intent(this,ManageServices.class);
+                b.putExtra("email",newString);
+                b.putExtra("name",WorkerName);
+                startActivity(b);
                 break;
             case R.id.nav_ViewProfile:
                 Intent i = new Intent(this,profileActivity.class);

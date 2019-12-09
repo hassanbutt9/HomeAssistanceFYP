@@ -110,6 +110,7 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
             case R.id.nav_Logout:
                 Intent login  = new Intent(this,new LoginInterface().getClass());
                 startActivity(login);
+                finish();
                 break;
 
         }

@@ -111,9 +111,12 @@ TextView star;
         protected void onPostExecute(String result)
         {try {
             String[] separated = result.split(":");
-            RB.setRating(Float.parseFloat(separated[0]));
+           if(!separated[0].isEmpty())
+           {RB.setRating(Float.parseFloat(separated[0]));
             star.setText(separated[0].substring(0,3));
-            locat.setText(separated[1]);
+            locat.setText(separated[1]);}
+           else
+               locat.setText(separated[1]);
         } catch (Exception e) {
             Log.e("log_tag", "Error parsing data reviews data" + e.toString());
 

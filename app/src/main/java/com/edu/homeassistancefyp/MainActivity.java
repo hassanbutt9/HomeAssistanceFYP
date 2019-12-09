@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Intent i = new Intent(this,LoginInterface.class);
         startActivity(i);
+        finish();
     }
 
     public void loadLocate(){

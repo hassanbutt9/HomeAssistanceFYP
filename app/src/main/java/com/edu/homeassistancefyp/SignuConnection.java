@@ -32,6 +32,8 @@ public class SignuConnection extends AsyncTask<String, Void, String> {
         if(message.equals("insert successfully")){
             context.startActivity(new Intent(context,LoginInterface.class));
         }
+        else
+            context.startActivity(new Intent(context,LoginInterface.class));
 
     }
 

@@ -2,6 +2,7 @@ package com.edu.homeassistancefyp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.Chronometer;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -28,6 +30,7 @@ import java.util.Date;
 
 public class Payment extends AppCompatActivity {
 String name,email,user,PID;
+    String amount;
 FrameLayout fl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +64,7 @@ FrameLayout fl;
         String loc;
         String result="";
         String stime="";
+
         int z=0;
         int flag=0;
         Button[] bt=new Button[10];
@@ -174,6 +178,7 @@ FrameLayout fl;
                         pay=hours*Integer.valueOf(stime5);
 
                 b6.setText("Total Payment: "+pay);
+                amount=String.valueOf(pay);
                 b6.setTextColor(Color.BLACK);
                 rootView2.addView(b6);
 
@@ -195,6 +200,8 @@ FrameLayout fl;
                         @Override
                         public void onClick(View view) {
 
+                            Paid p=new Paid();
+                            p.execute(PID);
 
                         }
                     });
@@ -263,4 +270,154 @@ FrameLayout fl;
             return result;
         }
     }
+    public class Paid extends AsyncTask<String, Void, String> {
+
+        String WEmail,Job,CName;
+
+
+
+        @Override
+        protected void onPreExecute() {
+
+        }
+
+        @Override
+        protected void onPostExecute(String message) {
+
+            if(message.equals("insert successfully")){
+
+                Transaction t=new Transaction();
+                t.execute(PID);
+
+
+            }
+            else
+                Toast.makeText(Payment.this, message, Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        protected String doInBackground(String... voids) {
+            String result = "";
+
+
+            String connectionString = "http://192.168.10.6/FYPHomeASsitant/Paid.php";
+
+            try {
+                Date d=new Date();
+                SimpleDateFormat sdf=new SimpleDateFormat("hh:mm a");
+                String currentDateTimeString = sdf.format(d);
+
+                URL url = new URL(connectionString);
+                HttpURLConnection http = (HttpURLConnection) url.openConnection();
+                http.setRequestMethod("POST");
+                http.setDoInput(true);
+                http.setDoOutput(true);
+
+                OutputStream ops = http.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(ops, "UTF-8"));
+                String data = URLEncoder.encode("PID", "UTF-8")+"="+URLEncoder.encode(PID, "UTF-8");
+                Log.e("log_tagaaaaaaaaa", data);
+
+                writer.write(data);
+                writer.flush();
+                writer.close();
+                ops.close();
+
+                InputStream ips = http.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(ips, "ISO-8859-1"));
+                String line = "";
+                while ((line = reader.readLine()) != null){
+                    result += line;
+                }
+                reader.close();
+                ips.close();
+                http.disconnect();
+                return result;
+
+            } catch (Exception e) {
+                result = e.getMessage();
+            }
+
+
+            return result;
+        }}
+
+    public class Transaction extends AsyncTask<String, Void, String> {
+
+        String WEmail,Job,CName;
+
+
+
+        @Override
+        protected void onPreExecute() {
+
+        }
+
+        @Override
+        protected void onPostExecute(String message) {
+
+            if(message.equals("insert successfully")){
+
+                Log.e("log_tag", "success");
+                Toast.makeText(Payment.this, "Thank You. Please Give Reviews..", Toast.LENGTH_SHORT).show();
+                Intent i=new Intent(Payment.this,new GiveReview().getClass());
+                i.putExtra("email",email);
+                i.putExtra("name",name);
+                i.putExtra("user",user);
+                i.putExtra("PID",PID);
+                startActivity(i);
+                finish();
+
+
+            }
+            else
+                Toast.makeText(Payment.this, message, Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        protected String doInBackground(String... voids) {
+            String result = "";
+
+
+            String connectionString = "http://192.168.10.6/FYPHomeASsitant/Transaction.php";
+
+            try {
+
+                URL url = new URL(connectionString);
+                HttpURLConnection http = (HttpURLConnection) url.openConnection();
+                http.setRequestMethod("POST");
+                http.setDoInput(true);
+                http.setDoOutput(true);
+
+                OutputStream ops = http.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(ops, "UTF-8"));
+                String data = URLEncoder.encode("PID", "UTF-8")+"="+URLEncoder.encode(PID, "UTF-8")
+                        + "&&" + URLEncoder.encode("amount", "UTF-8") + "=" + URLEncoder.encode(amount, "UTF-8")
+                        + "&&" + URLEncoder.encode("status", "UTF-8") + "=" + URLEncoder.encode("Paid by Cash", "UTF-8");
+                Log.e("log_tagaaaaaaaaa", data);
+
+                writer.write(data);
+                writer.flush();
+                writer.close();
+                ops.close();
+
+                InputStream ips = http.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(ips, "ISO-8859-1"));
+                String line = "";
+                while ((line = reader.readLine()) != null){
+                    result += line;
+                }
+                reader.close();
+                ips.close();
+                http.disconnect();
+                return result;
+
+            } catch (Exception e) {
+                result = e.getMessage();
+            }
+
+
+            return result;
+        }}
+
 }

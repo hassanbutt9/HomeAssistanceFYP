@@ -133,7 +133,7 @@ public class IndexFragment extends Fragment implements LocationListener {
                 getLocation();
                 Intent sw=new Intent(getActivity(),new searchWorkers().getClass());
                 sw.putExtra("email",mParam1);
-                sw.putExtra("categorie","Doctors");
+                sw.putExtra("categorie","Doctor");
                 sw.putExtra("location",address);
                 sw.putExtra("name",mParam2);
 
@@ -163,7 +163,7 @@ public class IndexFragment extends Fragment implements LocationListener {
                 getLocation();
                 Intent sw=new Intent(getActivity(),new searchWorkers().getClass());
                 sw.putExtra("email",mParam1);
-                sw.putExtra("categorie","Tutors");
+                sw.putExtra("categorie","Tutor");
                 sw.putExtra("location",address);
                 sw.putExtra("name",mParam2);
 
@@ -178,7 +178,7 @@ public class IndexFragment extends Fragment implements LocationListener {
                 getLocation();
                 Intent sw=new Intent(getActivity(),new searchWorkers().getClass());
                 sw.putExtra("email",mParam1);
-                sw.putExtra("categorie","Plumbers");
+                sw.putExtra("categorie","Plumber");
                 sw.putExtra("location",address);
                 sw.putExtra("name",mParam2);
 
