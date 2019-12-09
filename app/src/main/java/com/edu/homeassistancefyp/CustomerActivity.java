@@ -84,7 +84,7 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new IndexFragment()).commit();
                 break;
             case R.id.nav_myJobs:
-                Intent viewJob  = new Intent(this,new ViewJob().getClass());
+                Intent viewJob  = new Intent(this,new timer().getClass());
                 viewJob.putExtra("email",newString);
                 viewJob.putExtra("name",CustomerName);
                 viewJob.putExtra("user","customer");
