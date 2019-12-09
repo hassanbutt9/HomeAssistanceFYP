@@ -148,7 +148,7 @@ String name,email,user;
                 b5.setPadding(30, 15, 30, 0);
                 b5.setTextSize(25);
                 String stime5 = separated[i];
-                b5.setText("Per Hour Rate"+stime5);
+                b5.setText("Per Hour Rate: "+stime5);
                 b5.setTextColor(Color.BLACK);
                 rootView2.addView(b5);
                 if(user.equals("customer"))

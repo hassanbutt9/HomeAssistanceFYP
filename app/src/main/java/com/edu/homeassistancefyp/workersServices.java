@@ -202,11 +202,6 @@ public class workersServices extends Fragment {
                     b2.setText(stime2);
                     b2.setTextColor(Color.BLACK);
                     tr.addView(b2);
-                    Button b8=new Button(getActivity());
-                    b8.setPadding(20, 20, 0, 0);
-                    b8.setTextSize(18);
-                    b8.setText("BOOK");
-                    tr.addView(b8);
                     tv.addView(tr);
                     final View vline1 = new View(getActivity());
                     vline1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, 1));

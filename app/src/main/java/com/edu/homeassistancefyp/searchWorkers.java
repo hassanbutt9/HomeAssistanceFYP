@@ -298,7 +298,7 @@ public class searchWorkers extends AppCompatActivity {
             }
             else
                 Log.e("log_tagaaaaaaaaa", message);
-            Toast.makeText(searchWorkers.this, "Sorry Something Went Wrong", Toast.LENGTH_SHORT).show();
+            Toast.makeText(searchWorkers.this, "Worker Booked Successfully..Wait for accepting by Worker", Toast.LENGTH_SHORT).show();
         }
 
         @Override

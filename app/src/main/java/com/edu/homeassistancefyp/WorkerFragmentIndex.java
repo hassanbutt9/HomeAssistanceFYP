@@ -182,6 +182,19 @@ public class WorkerFragmentIndex extends Fragment implements LocationListener {
                 startActivity(pend);
             }
         });
+        UJ.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(UJ.getText().equals("1"))
+                {
+                    Intent i=new Intent(getActivity(),new ViewJob().getClass());
+                    i.putExtra("email",mParam1);
+                    i.putExtra("name",mParam2);
+                    i.putExtra("user","worker");
+                    startActivity(i);
+                }
+            }
+        });
 
         return view;
     }
@@ -329,7 +342,7 @@ public class WorkerFragmentIndex extends Fragment implements LocationListener {
         {
             if(!message.equals(null)) {
                 PJ.setText(message);
-
+                PJ.setEnabled(true);
 
             }
         }
@@ -378,9 +391,9 @@ public class WorkerFragmentIndex extends Fragment implements LocationListener {
         @Override
         protected void onPostExecute(String message)
         {
-            if(!message.equals(null)) {
+            if(!message.equals(null) || !message.equals("0")) {
                 UJ.setText(message);
-                PJ.setEnabled(false);
+
 
             }
             else
