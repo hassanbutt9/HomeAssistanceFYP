@@ -200,8 +200,7 @@ FrameLayout fl;
                         @Override
                         public void onClick(View view) {
 
-                            Paid p=new Paid();
-                            p.execute(PID);
+
 
                         }
                     });
@@ -214,7 +213,8 @@ FrameLayout fl;
                     cash.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-
+                            Paid p=new Paid();
+                            p.execute(PID);
 
                         }
                     });
@@ -364,7 +364,6 @@ FrameLayout fl;
                 i.putExtra("email",email);
                 i.putExtra("name",name);
                 i.putExtra("user",user);
-                i.putExtra("PID",PID);
                 startActivity(i);
                 finish();
 

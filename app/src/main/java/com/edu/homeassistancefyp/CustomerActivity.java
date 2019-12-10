@@ -167,6 +167,15 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
                     startActivity(i);
 
                 }
+                else if(Status.equals("Paid"))
+                {
+                    Intent i=new Intent(CustomerActivity.this,new GiveReview().getClass());
+                    i.putExtra("email",newString);
+                    i.putExtra("name",CustomerName);
+                    i.putExtra("user","customer");
+                    startActivity(i);
+
+                }
             }
             else
             {
