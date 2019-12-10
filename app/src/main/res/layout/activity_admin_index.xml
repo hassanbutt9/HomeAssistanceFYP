@@ -51,88 +51,16 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="1dp"
                 android:layout_marginTop="110dp"
-                android:background="@drawable/pic3"
+                android:background="@color/googleRed"
                 android:gravity="center_horizontal"
                 android:scrollbarSize="3dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="80dp"
+                    android:layout_marginBottom="30sp"
                     android:orientation="vertical"
-                    android:paddingTop="90dp">
-
-                    <Button
-                        android:id="@+id/customers_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/relativeLayout5"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginRight="30dp"
-                        android:background="@android:color/holo_red_light"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="@string/customer"
-                        android:textColor="@color/white" />
-
-                    <Button
-                        android:id="@+id/worker_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="40dp"
-                        android:layout_marginRight="30dp"
-                        android:background="@android:color/holo_red_light"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="@string/worker"
-                        android:textColor="@color/white" />
-
-                    <Button
-                        android:id="@+id/jobs_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/relativeLayout5"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="40dp"
-                        android:layout_marginRight="30dp"
-                        android:background="@android:color/holo_red_light"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="@string/job"
-                        android:textColor="@color/white" />
-
-                    <Button
-                        android:id="@+id/review_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/relativeLayout5"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="40dp"
-                        android:layout_marginRight="30dp"
-                        android:background="@android:color/holo_red_light"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="@string/review"
-                        android:textColor="@color/white" />
-
-                    <Button
-                        android:id="@+id/Transcation_button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/relativeLayout5"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginTop="40dp"
-                        android:layout_marginRight="30dp"
-                        android:background="@android:color/holo_red_light"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="@string/transaction"
-                        android:textColor="@color/white" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingTop="80dp">
+                    android:paddingTop="40dp">
 
                     <TextView
                         android:id="@+id/textView"
@@ -153,12 +81,12 @@
                         android:textSize="25sp" />
 
                     <TextView
-                        android:id="@+id/textView3"
+                        android:id="@+id/cus"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:textColor="@color/white"
-                        android:textSize="22sp" />
+                        android:textSize="24sp" />
 
                     <TextView
                         android:id="@+id/textView4"
@@ -167,15 +95,15 @@
                         android:layout_marginTop="30dp"
                         android:text="@string/worker"
                         android:textColor="@color/white"
-                        android:textSize="22sp" />
+                        android:textSize="25sp" />
 
                     <TextView
-                        android:id="@+id/textView7"
+                        android:id="@+id/wor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:textColor="@color/white"
-                        android:textSize="22sp" />
+                        android:textSize="24sp" />
 
                     <TextView
                         android:id="@+id/textView6"
@@ -184,15 +112,15 @@
                         android:layout_marginTop="30dp"
                         android:text="@string/earning"
                         android:textColor="@color/white"
-                        android:textSize="22sp" />
+                        android:textSize="25sp" />
 
                     <TextView
-                        android:id="@+id/textView5"
+                        android:id="@+id/ear"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:textColor="@color/white"
-                        android:textSize="22sp" />
+                        android:textSize="24sp" />
                 </LinearLayout>
             </LinearLayout>
 

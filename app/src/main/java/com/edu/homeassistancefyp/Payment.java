@@ -1,7 +1,9 @@
 package com.edu.homeassistancefyp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -16,12 +18,23 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.paypal.android.sdk.payments.PayPalAuthorization;
+import com.paypal.android.sdk.payments.PayPalConfiguration;
+import com.paypal.android.sdk.payments.PayPalFuturePaymentActivity;
+import com.paypal.android.sdk.payments.PayPalPayment;
+import com.paypal.android.sdk.payments.PayPalService;
+import com.paypal.android.sdk.payments.PaymentActivity;
+import com.paypal.android.sdk.payments.PaymentConfirmation;
+
+import org.json.JSONException;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -29,7 +42,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Payment extends AppCompatActivity {
+    private static final String TAG = "paymentExample";
+    public static final String PAYPAL_KEY ="Ae94Ph_1PueUDCwaANT3VHpcQWvFnQpMY2XN2tIHlfBnsd5lWY7DzJcNVmFduHWQEydCysDMXGDBYCKK";
+    private static final int REQUEST_CODE_PAYMENT =1;
+    private static final int REQUEST_FUTURE_PAYMENT=2;
+    private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_SANDBOX;
+    private static PayPalConfiguration config;
+    PayPalPayment thingstoBuy;
 String name,email,user,PID;
+  String payed;
     String amount;
 FrameLayout fl;
     @Override
@@ -58,6 +79,50 @@ FrameLayout fl;
         fl=(FrameLayout) findViewById(R.id.frameLayout6);
             db d=new db();
             d.execute(PID);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,@Nullable Intent data) {
+        super.onActivityResult(requestCode,resultCode,data);
+        if(requestCode==REQUEST_CODE_PAYMENT){
+            if(resultCode== Activity.RESULT_OK){
+                PaymentConfirmation confirm = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
+                if(confirm!=null){
+                    try{
+                        System.out.println(confirm.toJSONObject().toString(4));
+                        System.out.println(confirm.getPayment().toJSONObject().toString(4));
+                        Log.i("work","working");
+                        Toast.makeText(Payment.this, "payment sucessfull", Toast.LENGTH_SHORT).show();
+                        Paid p=new Paid();
+                        p.execute(PID);
+                    }
+                    catch (JSONException e){
+                        Toast.makeText(Payment.this, e.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else if(resultCode== Activity.RESULT_CANCELED)
+                    Toast.makeText(Payment.this, "payment has been cancelled", Toast.LENGTH_SHORT).show();
+                else if(resultCode==PaymentActivity.RESULT_EXTRAS_INVALID)
+                    Toast.makeText(Payment.this, "error occurred", Toast.LENGTH_SHORT).show();
+                else if(requestCode==REQUEST_FUTURE_PAYMENT){
+                    if(resultCode==Activity.RESULT_OK){
+                        PayPalAuthorization authorization = data.getParcelableExtra(PayPalFuturePaymentActivity.EXTRA_RESULT_AUTHORIZATION);
+                        if(authorization!=null){
+                            try{
+                                Log.i("FuturePayment",authorization.toJSONObject().toString(4));
+                                String authorization_code = authorization.getAuthorizationCode();
+                                Log.i("futur payment ",authorization_code);
+                            }
+                            catch (Exception e){
+
+                            }
+                        }
+                    }
+                }
+                else
+                    Log.i("fail","fail");
+            }
+
+        }
     }
     class db extends AsyncTask<String,Void,String>
     {
@@ -199,7 +264,10 @@ FrameLayout fl;
                     paypal.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            payed="Paid By PayPal";
+                            configPaypal();
 
+                            MakePayment();
 
 
                         }
@@ -213,6 +281,7 @@ FrameLayout fl;
                     cash.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            payed="Paid By Cash";
                             Paid p=new Paid();
                             p.execute(PID);
 
@@ -229,6 +298,26 @@ FrameLayout fl;
             Log.e("log_tag", "Error parsing data reviews data" + e.toString());
 
         }}
+
+        private void MakePayment(){
+            Intent intent = new Intent(Payment.this, PayPalService.class);
+            intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION,config);
+            startService(intent);
+            thingstoBuy = new PayPalPayment(new BigDecimal(amount),"USD","payment",PayPalPayment.PAYMENT_INTENT_SALE);
+            Intent payment =new Intent(Payment.this, PaymentActivity.class);
+            payment.putExtra(PaymentActivity.EXTRA_PAYMENT,thingstoBuy);
+            payment.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION,config);
+            startActivityForResult(payment,REQUEST_CODE_PAYMENT);
+
+        }
+        private void configPaypal(){
+            config = new PayPalConfiguration()
+                    .environment(CONFIG_ENVIRONMENT)
+                    .clientId(PAYPAL_KEY)
+                    .merchantName("PAYPAL LOGIN");
+
+        }
+
         @Override
         protected String doInBackground(String... strings) {
             loc=strings[0];
@@ -392,7 +481,7 @@ FrameLayout fl;
                 BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(ops, "UTF-8"));
                 String data = URLEncoder.encode("PID", "UTF-8")+"="+URLEncoder.encode(PID, "UTF-8")
                         + "&&" + URLEncoder.encode("amount", "UTF-8") + "=" + URLEncoder.encode(amount, "UTF-8")
-                        + "&&" + URLEncoder.encode("status", "UTF-8") + "=" + URLEncoder.encode("Paid by Cash", "UTF-8");
+                        + "&&" + URLEncoder.encode("status", "UTF-8") + "=" + URLEncoder.encode(payed, "UTF-8");
                 Log.e("log_tagaaaaaaaaa", data);
 
                 writer.write(data);
