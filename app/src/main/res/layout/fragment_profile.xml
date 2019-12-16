@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@drawable/pic2"
     tools:context=".ProfileFragment">
 
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
 
         android:layout_centerInParent="true"
         android:layout_marginLeft="20dp"
@@ -24,7 +24,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="400sp"
             android:layout_alignStart="@+id/relativeLayout1">
 
             <LinearLayout
@@ -37,18 +37,6 @@
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:scrollbarSize="3dp">
-
-                <Button
-                    android:id="@+id/button1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:background="@color/transparent"
-                    android:paddingLeft="250dp"
-                    android:text="@string/changeLanguage"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="13sp" />
 
 
                 <TextView
@@ -87,6 +75,7 @@
                     android:src="@drawable/gmail" />
 
                 <TextView
+                    android:id="@+id/mail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="40dp"
@@ -108,37 +97,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#FF0000"
+                    android:foreground="@android:drawable/sym_def_app_icon"
                     android:src="@drawable/lock" />
 
                 <TextView
+                    android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="35dp"
                     android:padding="10dp"
                     android:text="***********" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/relativeLayout3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/relativeLayout2"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="30dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/smartphone" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="35dp"
-                    android:padding="10dp"
-                    android:text="+923225047127" />
 
             </RelativeLayout>
 
@@ -153,7 +121,7 @@
                 android:layout_marginRight="100dp"
                 android:background="@android:color/holo_red_light"
                 android:fontFamily="sans-serif-medium"
-                android:text="EDIT"
+                android:text="ACCOUT"
                 android:textColor="@color/white" />
 
 

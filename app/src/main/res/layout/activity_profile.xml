@@ -24,21 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
-            android:paddingLeft="270dp">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:background="@color/transparent"
-                android:onClick="languageChangeButton"
-                android:text="@string/changeLanguage"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="13sp"
-                tools:ignore="OnClick" />
-
-        </LinearLayout>
+            android:paddingLeft="270dp"/>
 
         <LinearLayout
             android:id="@+id/linearLayout3"

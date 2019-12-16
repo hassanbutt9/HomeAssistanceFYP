@@ -64,7 +64,7 @@ public class LoginConnection extends AsyncTask<String, Void, String> {
             checkcustomerOrWorker="workers";
         }
     Log.i("worker/customer",checkcustomerOrWorker);
-        String connectionString = "http://192.168.10.6/FYPHomeASsitant/login.php";
+        String connectionString = "http://172.20.10.3/FYPHomeASsitant/login.php";
 
         try {
             URL url = new URL(connectionString);
@@ -145,7 +145,7 @@ public class LoginConnection extends AsyncTask<String, Void, String> {
             String result = "";
             String user2 = voids[0];
 
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/search.php";
+            String connectionString = "http://172.20.10.3/FYPHomeASsitant/search.php";
 
             try {
                 URL url = new URL(connectionString);

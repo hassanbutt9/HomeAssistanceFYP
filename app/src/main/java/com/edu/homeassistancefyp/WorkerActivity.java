@@ -116,7 +116,12 @@ public class WorkerActivity extends AppCompatActivity implements NavigationView.
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.nav_myProfile:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ProfileFragment()).commit();
+                Bundle bundle = new Bundle();
+                bundle.putString("ARG_PARAM1", newString);
+                bundle.putString("ARG_PARAM2",WorkerName);
+                ProfileFragment prf=new ProfileFragment();
+                prf.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,prf).commit();
                 break;
             case R.id.nav_Home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new WorkerFragmentIndex()).commit();
@@ -140,9 +145,7 @@ public class WorkerActivity extends AppCompatActivity implements NavigationView.
                 startActivity(i);
                 break;
 
-            case R.id.nav_Location:
-                startActivity(new Intent(this,new MapsActivity().getClass()));
-                break;
+
 
         }
         drawerLayout.closeDrawer(GravityCompat.START);

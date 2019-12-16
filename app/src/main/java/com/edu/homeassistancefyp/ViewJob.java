@@ -183,7 +183,7 @@ String name,email,user;
         protected String doInBackground(String... strings) {
             loc=strings[0];
 
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/viewJob.php";
+            String connectionString = "http://172.20.10.3/FYPHomeASsitant/viewJob.php";
 
             try {
                 URL url = new URL(connectionString);
@@ -256,7 +256,7 @@ String name,email,user;
             String result = "";
 
             Log.e("log_tagaaaaaaaaa", CName +" "+WEmail+" "+Job);
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/StartJob.php";
+            String connectionString = "http://172.20.10.3/FYPHomeASsitant/StartJob.php";
 
             try {
                 Date d=new Date();

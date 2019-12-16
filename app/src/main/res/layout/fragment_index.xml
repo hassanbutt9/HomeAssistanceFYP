@@ -86,7 +86,7 @@
 
                 <ImageView
                     android:id="@+id/imageView6"
-                    android:layout_width="70dp"
+                    android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/makeup" />
 
@@ -109,7 +109,7 @@
 
                 <ImageView
                     android:id="@+id/imageView7"
-                    android:layout_width="70dp"
+                    android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/cleaning" />
 
@@ -132,7 +132,7 @@
 
                 <ImageView
                     android:id="@+id/imageView8"
-                    android:layout_width="70dp"
+                    android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/doctor" />
 
@@ -153,7 +153,7 @@
 
                 <ImageView
                     android:id="@+id/imageView9"
-                    android:layout_width="70dp"
+                    android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/carwash" />
 
@@ -187,7 +187,7 @@
 
                 <ImageView
                     android:id="@+id/imageView10"
-                    android:layout_width="70dp"
+                    android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/teacher" />
 
@@ -210,7 +210,7 @@
 
                 <ImageView
                     android:id="@+id/imageView11"
-                    android:layout_width="70dp"
+                    android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/leak" />
 
@@ -233,7 +233,7 @@
 
                 <ImageView
                     android:id="@+id/imageView12"
-                    android:layout_width="70dp"
+                    android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/electrician" />
 
@@ -254,7 +254,7 @@
 
                 <ImageView
                     android:id="@+id/imageView13"
-                    android:layout_width="70dp"
+                    android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/massage" />
 
@@ -288,7 +288,7 @@
 
                 <ImageView
                     android:id="@+id/imageView14"
-                    android:layout_width="70dp"
+                    android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/fitnesstrainer" />
 
@@ -311,7 +311,7 @@
 
                 <ImageView
                     android:id="@+id/imageView15"
-                    android:layout_width="70dp"
+                    android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/maid" />
 
@@ -334,7 +334,7 @@
 
                 <ImageView
                     android:id="@+id/imageView16"
-                    android:layout_width="70dp"
+                    android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/carpenter" />
 
@@ -355,7 +355,7 @@
 
                 <ImageView
                     android:id="@+id/imageView17"
-                    android:layout_width="70dp"
+                    android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/teacher" />
 

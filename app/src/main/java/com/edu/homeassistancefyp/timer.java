@@ -199,7 +199,7 @@ String PID;
         protected String doInBackground(String... strings) {
             loc=strings[0];
 
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/timer.php";
+            String connectionString = "http://172.20.10.3/FYPHomeASsitant/timer.php";
 
             try {
                 URL url = new URL(connectionString);
@@ -273,7 +273,7 @@ String PID;
             String result = "";
 
 
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/EndJob.php";
+            String connectionString = "http://172.20.10.3/FYPHomeASsitant/EndJob.php";
 
             try {
                 Date d=new Date();

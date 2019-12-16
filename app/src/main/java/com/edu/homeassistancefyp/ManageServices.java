@@ -321,7 +321,7 @@ public class ManageServices extends AppCompatActivity {
             String result = "";
 
 
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/manageService.php";
+            String connectionString = "http://172.20.10.3/FYPHomeASsitant/manageService.php";
 
             try {
                 URL url = new URL(connectionString);

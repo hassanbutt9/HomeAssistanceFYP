@@ -39,6 +39,7 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
     String newString;
     String CustomerName;
     String PID,Job,Status;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +73,7 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
         myObj.setArguments(bundle);
 
 
+
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
        this.setSupportActionBar(myToolbar);
        drawerLayout = findViewById(R.id.drawer_Layout);
@@ -98,7 +100,12 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.nav_myProfile:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ProfileFragment()).commit();
+                Bundle bundle = new Bundle();
+                bundle.putString("ARG_PARAM1", newString);
+                bundle.putString("ARG_PARAM2",CustomerName);
+                ProfileFragment prf=new ProfileFragment();
+                prf.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,prf).commit();
                 break;
             case R.id.nav_Home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new IndexFragment()).commit();
@@ -191,7 +198,7 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
         protected String doInBackground(String... strings) {
             loc=strings[0];
 
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/CustomerActivity.php";
+            String connectionString = "http://172.20.10.3/FYPHomeASsitant/CustomerActivity.php";
 
             try {
                 URL url = new URL(connectionString);

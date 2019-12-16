@@ -255,7 +255,7 @@ public class WorkerFragmentIndex extends Fragment implements LocationListener {
         protected Void doInBackground(String... strings) {
             loc=strings[0];
 
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/addLoc.php";
+            String connectionString = "http://172.20.10.3/FYPHomeASsitant/addLoc.php";
 
             try {
                 URL url = new URL(connectionString);
@@ -298,7 +298,7 @@ public class WorkerFragmentIndex extends Fragment implements LocationListener {
         protected Void doInBackground(String... strings) {
             String status=strings[0];
 
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/Status.php";
+            String connectionString = "http://172.20.10.3/FYPHomeASsitant/Status.php";
 
             try {
                 URL url = new URL(connectionString);
@@ -350,7 +350,7 @@ public class WorkerFragmentIndex extends Fragment implements LocationListener {
         protected String doInBackground(String... strings) {
             String status=strings[0];
 
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/PJ.php";
+            String connectionString = "http://172.20.10.3/FYPHomeASsitant/PJ.php";
 
             try {
                 URL url = new URL(connectionString);
@@ -403,7 +403,7 @@ public class WorkerFragmentIndex extends Fragment implements LocationListener {
         protected String doInBackground(String... strings) {
             String status=strings[0];
 
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/UJ.php";
+            String connectionString = "http://172.20.10.3/FYPHomeASsitant/UJ.php";
 
             try {
                 URL url = new URL(connectionString);

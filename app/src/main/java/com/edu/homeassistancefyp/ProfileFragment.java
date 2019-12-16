@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 /**
@@ -25,8 +26,8 @@ public class ProfileFragment extends Fragment {
 
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String mParam1="customer@cutomer.com";
+    private String mParam2="Customer";
 
     private OnFragmentInteractionListener mListener;
 
@@ -57,8 +58,8 @@ public class ProfileFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam1 = getArguments().getString("ARG_PARAM1");
+            mParam2 = getArguments().getString("ARG_PARAM2");
         }
     }
 
@@ -66,7 +67,16 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View view =  inflater.inflate(R.layout.fragment_profile,
+                container, false);
+
+TextView email =(TextView)view.findViewById(R.id.mail);
+TextView name=(TextView) view.findViewById(R.id.name);
+
+email.setText(mParam1);
+name.setText(mParam2);
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

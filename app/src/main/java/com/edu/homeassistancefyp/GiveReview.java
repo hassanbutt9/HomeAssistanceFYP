@@ -109,7 +109,7 @@ public class GiveReview extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             loc=strings[0];
 
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/getWemail.php";
+            String connectionString = "http://172.20.10.3/FYPHomeASsitant/getWemail.php";
 
             try {
                 URL url = new URL(connectionString);
@@ -176,7 +176,7 @@ public class GiveReview extends AppCompatActivity {
             String result = "";
 
 
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/Done.php";
+            String connectionString = "http://172.20.10.3/FYPHomeASsitant/Done.php";
 
             try {
 
@@ -247,7 +247,7 @@ public class GiveReview extends AppCompatActivity {
             String result = "";
 
 
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/addReview.php";
+            String connectionString = "http://172.20.10.3/FYPHomeASsitant/addReview.php";
 
             try {
 

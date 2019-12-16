@@ -322,7 +322,7 @@ FrameLayout fl;
         protected String doInBackground(String... strings) {
             loc=strings[0];
 
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/payment.php";
+            String connectionString = "http://172.20.10.3/FYPHomeASsitant/payment.php";
 
             try {
                 URL url = new URL(connectionString);
@@ -389,7 +389,7 @@ FrameLayout fl;
             String result = "";
 
 
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/Paid.php";
+            String connectionString = "http://172.20.10.3/FYPHomeASsitant/Paid.php";
 
             try {
                 Date d=new Date();
@@ -467,7 +467,7 @@ FrameLayout fl;
             String result = "";
 
 
-            String connectionString = "http://192.168.10.6/FYPHomeASsitant/Transaction.php";
+            String connectionString = "http://172.20.10.3/FYPHomeASsitant/Transaction.php";
 
             try {
 
