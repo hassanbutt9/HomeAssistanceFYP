@@ -169,33 +169,44 @@ public class ManageServices extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         arate = input.getText().toString();
 
+                        if(Integer.valueOf(arate)>5) {
+                            AlertDialog.Builder builder2 = new AlertDialog.Builder(ManageServices.this);
+                            builder2.setTitle("Enter Per Hour Rate For " + b);
+                            final EditText input = new EditText(ManageServices.this);
+                            input.setInputType(InputType.TYPE_CLASS_NUMBER);
+                            builder2.setView(input);
+                            builder2.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    brate = input.getText().toString();
+                                    if(Integer.valueOf(brate)>5)
+                                    {
+                                    Toast.makeText(ManageServices.this, a + "   " + b + "  " + arate + "  " + brate, Toast.LENGTH_SHORT).show();
+                                    addJob aj = new addJob();
+                                    aj.execute(email);}
+                                    else
+                                    {
+                                        Toast.makeText(getApplicationContext(),"Price must be greater than 5", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                            builder2.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
 
-                        AlertDialog.Builder builder2 = new AlertDialog.Builder(ManageServices.this);
-                        builder2.setTitle("Enter Per Hour Rate For "+b);
-                        final EditText input = new EditText(ManageServices.this);
-                        input.setInputType(InputType.TYPE_CLASS_NUMBER);
-                        builder2.setView(input);
-                        builder2.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                brate = input.getText().toString();
-                                Toast.makeText(ManageServices.this, a+"   "+b+"  "+arate + "  "+ brate, Toast.LENGTH_SHORT).show();
-                                addJob aj=new addJob();
-                                aj.execute(email);
-                            }
-                        });
-                        builder2.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
+                            builder2.show();
 
-                        builder2.show();
-
-
+                        }
+                        else
+                        {
+                            Toast.makeText(getApplicationContext(),"Price must be greater than 5", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
+
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

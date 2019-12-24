@@ -82,6 +82,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="-2dp"
                     android:background="@color/editTextBG"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     android:hint="@string/username"
                     android:paddingLeft="5dp"
                     android:textSize="15sp" />

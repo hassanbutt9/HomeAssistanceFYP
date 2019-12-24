@@ -28,19 +28,39 @@ public class SignUpInterface extends AppCompatActivity {
             if (emailEditText.getText().toString().trim().matches(emailPattern)) {
                 EditText passEditText =(EditText)findViewById(R.id.password);
                 EditText nameEdit = (EditText)findViewById(R.id.name);
+                if(!nameEdit.getText().toString().isEmpty() && nameEdit.getText().toString().length()>2)
+                {
                 EditText phoneNo = (EditText)findViewById(R.id.phoneno);
                 String id = emailEditText.getText().toString();
                 String pass = passEditText.getText().toString();
-                String name = nameEdit.getText().toString();
+                if(!pass.isEmpty() && pass.length()>5)
+                {String name = nameEdit.getText().toString();
                 String phoneNoValue = phoneNo.getText().toString();
+                if(!phoneNoValue.isEmpty() && phoneNoValue.length()>10) {
+                    RadioGroup radioGroup = (RadioGroup) findViewById(R.id.RadioSignupCheck);
+                    int Rid = radioGroup.getCheckedRadioButtonId();
+                    RadioButton rb = (RadioButton) findViewById(Rid);
+                    String cOrW = (String) rb.getText();
 
-                RadioGroup radioGroup = (RadioGroup) findViewById(R.id.RadioSignupCheck);
-                int Rid=radioGroup.getCheckedRadioButtonId();
-                RadioButton rb=(RadioButton) findViewById(Rid);
-                String cOrW = (String) rb.getText();
+                    SignuConnection LC = new SignuConnection(this);
+                    LC.execute(id, pass, name, phoneNoValue, cOrW);
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(),"Invalid Phone No", Toast.LENGTH_SHORT).show();
+                }
 
-                SignuConnection LC = new SignuConnection(this);
-                LC.execute(id, pass,name,phoneNoValue,cOrW);
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(),"Invalid Password.Password must be minimum 6 characters", Toast.LENGTH_SHORT).show();
+                }
+
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(),"Invalid name", Toast.LENGTH_SHORT).show();
+                }
             } else {
                 Toast.makeText(getApplicationContext(),"Invalid email address", Toast.LENGTH_SHORT).show();
             }
